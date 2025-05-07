@@ -1,0 +1,19 @@
+{% extends 'plantillas/base.html' %}
+
+{% block contenido %}
+<main class="main_registro">
+    
+    <div class="container_registro">
+        <h1>Crear una cuenta</h1>
+        <form class="formulario_registro" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Registrarse</button>
+        </form>
+    </div>
+</main>
+
+<footer class="footer_login">
+    <a href="{% url 'home' %}">Volver al principio</a>
+</footer>
+{% endblock %}

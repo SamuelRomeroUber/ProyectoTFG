@@ -1,0 +1,27 @@
+{% extends 'plantillas/base.html' %}
+
+{% block contenido %}
+<main class="main_formulario">
+    <div class="formulario_anadir">
+        <h1>Tarea nueva</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Crear Tarea</button>
+        </form>
+
+        {% if form.errors %}
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+            <br>
+        <a href="{% url 'perfil_usuario' %}">Volver</a>
+
+    </div>
+</main>
+{% endblock %}

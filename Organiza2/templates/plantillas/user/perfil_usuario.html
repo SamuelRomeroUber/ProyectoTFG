@@ -1,0 +1,26 @@
+{% extends 'plantillas/base.html' %}
+
+{% block contenido %}
+<header>
+    <nav class="nav_home">
+        <ul>
+            <li>Crear personas</li>
+            <li>Crear club</li>
+            <li>Crear categoría</li>
+        </ul>
+        
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %} 
+            <button type="submit" class="">Cerrar Sesión</button>
+        </form>
+    </nav>
+</header>
+
+<main class="main_home">
+
+    <h1>Perfil Usuario</h1>
+
+    <a href="{% url 'crear_tarea' %}">Nueva tarea</a>
+
+</main>
+{% endblock %}

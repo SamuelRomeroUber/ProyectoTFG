@@ -1,0 +1,28 @@
+{% extends 'plantillas/base.html' %}
+
+{% block contenido %}
+
+
+<main class="main_login">
+    <div class="container_login">
+        <form class="formulario_inicio_sesion" method="post">
+            <h1>Inicio de sesión</h1>
+            {% if form.errors %}
+                <p>Por favor, corrige los siguientes errores:</p>
+                {{ form.errors }}
+            {% endif %}
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Iniciar sesión</button><br><br>
+            
+            <a href="{% url 'registro' %}">¿No tienes cuenta todavía?</a>
+            
+        </form>
+    </div>
+</main>
+
+
+<footer class="footer_login">
+    <a href="{% url 'home' %}">Volver al principio</a>
+</footer>
+{% endblock %}

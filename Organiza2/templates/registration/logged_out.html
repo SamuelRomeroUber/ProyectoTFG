@@ -1,0 +1,10 @@
+{% extends 'plantillas/base.html' %}
+
+{% block titulo %} Creación de equipo {% endblock %}
+
+{% block contenido %}
+    
+<h1>Sesión cerrada</h1>
+<p>Has cerrado sesión correctamente. <a href="{% url 'login' %}">Iniciar sesión de nuevo</a>.</p>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'plantillas/base.html' %}
+
+{% block contenido %}
+    <header>
+        <nav class="nav_home">
+            <ul>
+                <li>Crear personas</li>
+                <li>Crear club</li>
+                <li>Crear categoría</li>
+            </ul>
+            
+            <a href="{% url 'login' %}" class="btn">Iniciar Sesión</a>
+            <a href="{% url 'registro' %}" class="btn">Registrarse</a>
+
+        </nav>
+    </header>
+    <main class="main_home">
+        <h1>Este es el home</h1>
+        <p>buenas</p>
+    </main>
+{% endblock %}
