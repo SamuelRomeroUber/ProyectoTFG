@@ -1,0 +1,20 @@
+{% extends 'plantillas/base.html' %}
+
+{% block contenido %}
+<main class="main_listado">
+    <div class="contenedor-lista">
+        <h1>Listado de las tareas creadas</h1>
+            <ul>
+                {% for tarea in object_list %}
+                    <li class="li-listado">
+                        <a href=  "{% url 'detalle_tarea' tarea.pk %}" >{{tarea.titulo}}</a>
+                    </li>
+                {% empty %}
+                <p>No hay tareas</p>
+                {% endfor %}
+            </ul>
+            <br>
+            <a href="{% url 'perfil_usuario' %}">Volver</a>
+    </div>
+</main>   
+{% endblock %}

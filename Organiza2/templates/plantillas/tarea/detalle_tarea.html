@@ -1,0 +1,27 @@
+{% extends 'plantillas/base.html' %}
+
+{% block contenido %}
+<main class="main-detalle">
+    <div class="container-detalle">
+        <h1>{{object.titulo}}</h1>
+
+        <h2>Detalles</h2>
+        
+        <p>Descripción: {{object.descripcion}}<br></p>
+        <p>Fecha de creación: {{object.fecha_creacion}}<br></p>
+        <p>Fecha de vencimiento: {{object.fecha_vencimiento}}<br></p>
+        <p>Estado: {{object.estado}}<br></p>
+        <p>Prioridad: {{object.prioridad}}<br></p>
+        <p>Visibilidad: {{object.visibilidad}}<br></p>
+        <br>
+        <p>Este club ha sido creado por el usuario {{object.usuario}}</p><br>
+
+        <a href="{% url 'editar_tarea' tarea.pk %}">Editar</a>
+        <a href="{% url 'borrar_tarea' tarea.pk %}">Borrar</a>
+
+        <br>
+        <a href="{% url 'listar_tareas' %}">Volver</a>
+    </div>
+    
+</main>
+{% endblock %}

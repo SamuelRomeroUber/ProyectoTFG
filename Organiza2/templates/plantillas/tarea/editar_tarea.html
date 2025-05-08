@@ -1,0 +1,16 @@
+{% extends 'plantillas/base.html' %}
+
+{% block contenido %}
+
+<form action="" method="post" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    {{form.as_p}}
+    
+    <input type="submit"/>
+
+</form>
+<a href="{% url 'listar_tareas' %}">Cancelar</a>
+
+{% endblock %}
