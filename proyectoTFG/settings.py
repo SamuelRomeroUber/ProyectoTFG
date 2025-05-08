@@ -27,7 +27,6 @@ SECRET_KEY = 'django-insecure-%gupg#og&oc-j&)b8kpv&%@i_czl_=n@g#-bsreaypz=+@!x*r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['.onrender.com']
 
 
@@ -77,12 +76,11 @@ WSGI_APPLICATION = 'proyectoTFG.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+import dj_database_url
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
+
 
 
 # Password validation
