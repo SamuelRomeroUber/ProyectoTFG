@@ -8,7 +8,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
 
 # Esta es la vista principal de la aplicación
 def home(request):

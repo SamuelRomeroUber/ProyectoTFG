@@ -1,9 +1,18 @@
 from django import forms
-from .models import Tarea
+from .models import Tarea, Etiqueta
 from django.contrib.auth.models import User
 from django.utils import timezone
 
 class TareaForm(forms.ModelForm):
+    etiqueta = forms.ModelChoiceField(
+        queryset=Etiqueta.objects.all(),
+        required=False,
+        widget=forms.Select(attrs={
+            'class': 'form-select',
+            'data-placeholder': 'Selecciona o crea una etiqueta',
+        }),
+        label='Etiqueta',
+    )
     class Meta:
         model = Tarea
         fields = [
@@ -39,9 +48,9 @@ class TareaForm(forms.ModelForm):
             'completada': forms.CheckboxInput(attrs={
                 'class': 'form-check-input'
             }),
-            'etiqueta': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Etiqueta (opcional)'
+            'etiqueta': forms.Select(attrs={
+                'class': 'form-select',
+                'placeholder': 'Selecciona o escribe una etiqueta',
             }),
             'prioridad': forms.Select(attrs={
                 'class': 'form-select'
@@ -68,6 +77,12 @@ class TareaForm(forms.ModelForm):
         # Si se proporciona un usuario, establecerlo como usuario de la tarea
         if user:
             self.instance.usuario = user
+
+    def clean_etiqueta(self):
+        etiqueta = self.cleaned_data.get('etiqueta')
+        if isinstance(etiqueta, str):
+            etiqueta, created = Etiqueta.objects.get_or_create(nombre=etiqueta)
+        return etiqueta
 
     def clean_fecha_vencimiento(self):
         fecha_vencimiento = self.cleaned_data.get('fecha_vencimiento')
