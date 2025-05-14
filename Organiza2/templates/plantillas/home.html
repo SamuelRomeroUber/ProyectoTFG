@@ -4,9 +4,9 @@
     <header>
         <nav class="nav_home">
             <ul>
-                <li>Acerca del proyecto</li>
-                <li>Objetivo</li>
-                <li>Creador</li>
+                <li><a href="#acerca" style="color:inherit;text-decoration:none;">Acerca del proyecto</a></li>
+                <li><a href="#objetivo" style="color:inherit;text-decoration:none;">Objetivo</a></li>
+                <li><a href="#creador" style="color:inherit;text-decoration:none;">Creador</a></li>
             </ul>
             
             <div class="btn-container">
@@ -16,7 +16,45 @@
         </nav>
     </header>
     <main class="main_home">
-        <h1>Este es el home</h1>
-        <p>buenas</p>
+        <section class="home-section">
+            <h1 id="acerca">Bienvenido a Organiza2</h1>
+            <p>Organiza2 es una plataforma diseñada para ayudarte a gestionar tus tareas y 
+                proyectos de manera eficiente.</p>
+            <p>Con Organiza2, puedes crear listas de tareas con las que puedes organizarte
+                 y colaborar con otros usuarios con los que puedes ver sus rutinas e incluso copiarlas para poder usarlas a tu gusto.</p>
+            <br>
+            <br>
+            <h1>Acerca del proyecto</h1>
+            <p>Organiza2 es una herramienta que permite a los usuarios organizar sus tareas y proyectos de manera efectiva. Con una interfaz intuitiva
+                 y fácil de usar.</p>
+            <p>Este proyecto ha sido desarrollado utilizando el framework Django, que permite crear aplicaciones web robustas y seguras con Python
+                 como lenguaje principal.<br> Para la interfaz de usuario se ha empleado HTML, CSS y JavaScript, asegurando una experiencia intuitiva y moderna. 
+                 <br>Además, la base de datos utilizada es PostgreSQL, lo que garantiza un almacenamiento eficiente y seguro de la información. <br> El despliegue de la 
+                 aplicación se ha realizado en la plataforma Render, lo que facilita la disponibilidad y escalabilidad del servicio en la nube, permitiendo que 
+                 los usuarios accedan a Organiza2 desde cualquier lugar y dispositivo.</p>
+            <br>
+            <br>
+            <br>
+            <h1 id="objetivo">Objetivo</h1>
+            <p>El objetivo de Organiza2 es facilitar la gestión del tiempo y aumentar la productividad de los usuarios. Queremos que puedas concentrarte 
+                en lo que realmente importa, dejando que nuestra plataforma se encargue de recordarte tus tareas y plazos.</p>
+            <p>Además, Organiza2 busca fomentar la colaboración entre usuarios, permitiendo compartir listas de tareas y rutinas, así como copiar y adaptar 
+                las de otros para ajustarlas a tus propias necesidades. De esta manera, no solo podrás organizar tus proyectos personales, sino también trabajar en equipo de forma eficiente.</p>
+            <p>La plataforma está diseñada para ser flexible y adaptarse a distintos estilos de trabajo, ya seas estudiante, profesional o simplemente 
+                alguien que quiere mejorar su organización diaria. Nuestro compromiso es ofrecerte una herramienta intuitiva, segura y accesible desde cualquier dispositivo.</p>
+            <br>
+            <br>
+            <br>
+            <h1 id="creador">Creador</h1>
+            <p>Organiza2 fue creado por un unico desarrollador apasionado por la tecnología y la productividad. El objetivo es ayudar a las personas a organizar su vida diaria 
+                y alcanzar sus metas de manera más efectiva.</p>
+            <p>Este proyecto se ha llevado a cabo por 3 motivos:</p>
+            <ul>
+                <li>Trabajo final de grado</li>
+                <li>Tener una aplicación útil con la que yo mismo pueda usar y poder modificar a mi gusto y mi comodidad</li>
+                <li>Poder desarrollar mis habilidades en alguno de los lenguajes más usados, probar sitios web para desplegar páginas webs y usar 
+                    bases de datos como PostgreSQL</li>
+            </ul>
+        </section>
     </main>
 {% endblock %}

@@ -6,7 +6,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Organiza2</title>
-<link rel="stylesheet" href="{% static 'Organiza2/css/home.css' %}">
+        <link rel="stylesheet" href="{% static 'Organiza2/css/home.css' %}">
+        <link rel="stylesheet" href="{% static 'Organiza2/css/login.css' %}">
+        <link rel="stylesheet" href="{% static 'Organiza2/css/register.css' %}">
     </head>
     <body>
         <h1>{% block titulo %}{% endblock %}</h1>
@@ -14,5 +16,20 @@
         {% block contenido %}
         {% endblock %}
 
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const nav = document.querySelector('.nav_home');
+            if (!nav) return;
+            const navOffset = nav.offsetTop;
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > navOffset) {
+                    nav.classList.add('nav-fixed');
+                } else {
+                    nav.classList.remove('nav-fixed');
+                }
+            });
+        });
+        </script>
     </body>
 </html>

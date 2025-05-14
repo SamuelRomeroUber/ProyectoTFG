@@ -1,19 +1,116 @@
 {% extends 'plantillas/base.html' %}
 
 {% block contenido %}
-<main class="main_registro">
-    
-    <div class="container_registro">
+<main class="main_register">
+    <div class="container_register">
         <h1>Crear una cuenta</h1>
-        <form class="formulario_registro" method="post">
+        <form class="formulario_registro" method="post" id="registroForm">
             {% csrf_token %}
-            {{ form.as_p }}
+            
+            <!-- Campo Username -->
+            <label for="{{ form.username.id_for_label }}">Nombre de usuario:</label>
+            {{ form.username }}
+            {% if form.username.errors %}
+                <div class="errores_registro" id="username_error">
+                    {% for error in form.username.errors %}
+                        {% if "A user with that username already exists." in error %}
+                            Ya existe un usuario con ese nombre.
+                        {% elif "Enter a valid username." in error %}
+                            El nombre de usuario solo puede contener letras, números y los caracteres @/./+/-/_.
+                        {% else %}
+                            {{ error }}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="errores_registro" id="username_error" style="display:none;"></div>
+            {% endif %}
+            
+            <!-- Campo Password1 -->
+            <label for="{{ form.password1.id_for_label }}">Contraseña:</label>
+            {{ form.password1 }}
+            {% if form.password1.errors %}
+                <div class="errores_registro" id="password1_error">
+                    {% for error in form.password1.errors %}
+                        {% if "This password is too common." in error %}
+                            Esta contraseña es demasiado común.
+                        {% elif "This password is too short." in error %}
+                            La contraseña debe tener al menos 8 caracteres.
+                        {% elif "This password is entirely numeric." in error %}
+                            La contraseña no puede ser solo numérica.
+                        {% elif "This password is too similar to the username." in error %}
+                            La contraseña es demasiado similar al nombre de usuario.
+                        {% else %}
+                            {{ error }}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="errores_registro" id="password1_error" style="display:none;"></div>
+            {% endif %}
+            
+            <!-- Campo Password2 -->
+            <label for="{{ form.password2.id_for_label }}">Confirmar contraseña:</label>
+            {{ form.password2 }}
+            {% if form.password2.errors %}
+                <div class="errores_registro" id="password2_error">
+                    {% for error in form.password2.errors %}
+                        {% if "The two password fields didn't match." in error %}
+                            Las contraseñas no coinciden.
+                        {% else %}
+                            {{ error }}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="errores_registro" id="password2_error" style="display:none;"></div>
+            {% endif %}
+            
             <button type="submit">Registrarse</button>
         </form>
     </div>
 </main>
-
-<footer class="footer_login">
+<footer class="footer_register">
     <a href="{% url 'home' %}">Volver al principio</a>
 </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Función para traducir mensajes de error
+    function traducirError(mensaje) {
+        const traducciones = {
+            "This field is required.": "Este campo es obligatorio.",
+            "A user with that username already exists.": "Ya existe un usuario con ese nombre.",
+            "Enter a valid username. This value may contain only letters, numbers, and @/./+/-/_ characters.": "El nombre de usuario solo puede contener letras, números y los caracteres @/./+/-/_.",
+            "This password is too common.": "Esta contraseña es demasiado común.",
+            "This password is too short. It must contain at least 8 characters.": "La contraseña debe tener al menos 8 caracteres.",
+            "This password is entirely numeric.": "La contraseña no puede ser solo numérica.",
+            "This password is too similar to the username.": "La contraseña es demasiado similar al nombre de usuario.",
+            "The two password fields didn't match.": "Las contraseñas no coinciden.",
+        };
+        
+        // Buscar coincidencias parciales
+        for (const [key, value] of Object.entries(traducciones)) {
+            if (mensaje.includes(key)) {
+                return value;
+            }
+        }
+        return mensaje;
+    }
+    
+    // Traducir errores que puedan venir del servidor
+    const errores = {
+        username: document.getElementById('username_error'),
+        password1: document.getElementById('password1_error'),
+        password2: document.getElementById('password2_error')
+    };
+    
+    for (const [campo, elemento] of Object.entries(errores)) {
+        if (elemento && elemento.textContent.trim() !== '') {
+            elemento.textContent = traducirError(elemento.textContent.trim());
+            elemento.style.display = 'block';
+        }
+    }
+});
+</script>
 {% endblock %}

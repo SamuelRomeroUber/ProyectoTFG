@@ -1,0 +1,94 @@
+/* Estilos generales para la página de login */
+
+body {
+    background-color: #F2CD5D;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+}
+
+.main_login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.container_login {
+    background-color: #DEA54B;
+    padding: 2rem 2.5rem;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+    width: 100%;
+    max-width: 400px;
+}
+
+.formulario_inicio_sesion h1 {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+.formulario_inicio_sesion p {
+    color: #fff;
+}
+
+.formulario_inicio_sesion input[type="text"],
+.formulario_inicio_sesion input[type="password"] {
+    width: 95%;
+    padding: 0.7rem;
+    margin-bottom: 1rem;
+    border: 1px solid #fff;
+    border-radius: 6px;
+    background: #fff8e1;
+    font-size: 1rem;
+}
+
+.formulario_inicio_sesion button[type="submit"] {
+    width: 100%;
+    padding: 0.7rem;
+    background-color: #DEA54B; /* Amarillo oscuro */
+    border: 1px solid white;
+    color: #fff;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+}
+
+.formulario_inicio_sesion button[type="submit"]:hover {
+    background-color: #fff;
+    color: #DEA54B;
+    border: 1px solid #DEA54B;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.formulario_inicio_sesion a {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    color: #000000;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.formulario_inicio_sesion a:hover {
+    text-decoration: underline;
+}
+
+.footer_login {
+    text-align: center;
+    margin: 2rem 0 1rem 0;
+}
+
+.footer_login a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.footer_login a:hover {
+    text-decoration: underline;
+}
