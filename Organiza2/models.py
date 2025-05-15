@@ -2,21 +2,25 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
+# El modelo Etiqueta debe estar definido ANTES que Tarea si lo refieres directamente,
+# o puedes usar una cadena 'Etiqueta' en el ForeignKey.
+class Etiqueta(models.Model):
+    nombre = models.CharField(max_length=50, unique=True, verbose_name='Nombre de la etiqueta')
+    
+    def __str__(self):
+        return self.nombre
+
 class Tarea(models.Model):
-    # Opciones para el estado de la tarea
     ESTADO_CHOICES = [
         ('pendiente', 'Pendiente'),
         ('en_progreso', 'En progreso'),
         ('completada', 'Completada'),
     ]
-    
-    # Opciones para la visibilidad de la tarea
     VISIBILIDAD_CHOICES = [
         ('privada', 'Privada'),
         ('publica', 'Pública'),
     ]
     
-    # Campos principales
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tareas')
     titulo = models.CharField(max_length=200, verbose_name='Título')
     descripcion = models.TextField(verbose_name='Descripción', blank=True, null=True)
@@ -27,8 +31,16 @@ class Tarea(models.Model):
     completada = models.BooleanField(default=False, verbose_name='Completada')
     fecha_completada = models.DateTimeField(blank=True, null=True, verbose_name='Fecha de completación')
     
-    # Campos adicionales
-    etiqueta = models.CharField(max_length=50, blank=True, null=True, verbose_name='Etiqueta')
+    # --- MODIFICACIÓN AQUÍ ---
+    etiqueta = models.ForeignKey(
+        Etiqueta, 
+        on_delete=models.SET_NULL, # O models.PROTECT, o lo que prefieras
+        null=True, 
+        blank=True, 
+        verbose_name='Etiqueta'
+    )
+    # --- FIN MODIFICACIÓN ---
+    
     prioridad = models.PositiveIntegerField(default=1, verbose_name='Prioridad (1-5)', choices=[(i, str(i)) for i in range(1, 6)])
     
     class Meta:
@@ -40,7 +52,6 @@ class Tarea(models.Model):
         return f"{self.titulo} - {self.get_estado_display()}"
     
     def save(self, *args, **kwargs):
-        # Actualizar fecha_completada si la tarea se marca como completada
         if self.completada and not self.fecha_completada:
             self.fecha_completada = timezone.now()
         elif not self.completada and self.fecha_completada:
@@ -70,9 +81,3 @@ class PerfilUsuario(models.Model):
     
     def __str__(self):
         return f"Perfil de {self.usuario.username}"
-    
-class Etiqueta(models.Model):
-    nombre = models.CharField(max_length=50, unique=True, verbose_name='Nombre de la etiqueta')
-    
-    def __str__(self):
-        return self.nombre

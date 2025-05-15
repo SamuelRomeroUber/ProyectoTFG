@@ -19,10 +19,48 @@
 
 <main class="main_perfil">
 
-    <h1>Perfil Usuario</h1>
+    <h1>Perfil de {{ user.username }}</h1>
+    <p>Bienvenido a tu espacio personal.</p>
+    <hr>
 
-    <a href="{% url 'crear_tarea' %}">Nueva tarea</a>
-    <a href="{% url 'listar_tareas' %}">Listar tareas</a>
+    <h2>Acciones Rápidas</h2>
+    <a href="{% url 'crear_tarea' %}" class="btn-accion">Nueva tarea</a>
+    <a href="{% url 'listar_tareas' %}" class="btn-accion">Ver todas mis tareas (Listado completo)</a>
+    <hr>
+
+    <h2 id="mis-tareas">Mis Tareas Recientes/Pendientes</h2>
+
+    {% if tareas %}
+        <div class="lista-tareas-perfil">
+            {% for tarea in tareas %}
+                <div class="tarea-item-perfil">
+                    <h3>
+                        <a href="{% url 'detalle_tarea' tarea.pk %}">{{ tarea.titulo }}</a>
+                        {% if tarea.completada %}
+                            <span class="badge-completada">(Completada)</span>
+                        {% endif %}
+                    </h3>
+                    <p class="tarea-meta">
+                        <strong>Estado:</strong> {{ tarea.get_estado_display }} | 
+                        <strong>Prioridad:</strong> {{ tarea.prioridad }} |
+                        <strong>Vencimiento:</strong> {{ tarea.fecha_vencimiento|date:"d/m/Y H:i"|default:"Sin fecha" }}
+                        {% if tarea.etiqueta %}
+                            | <strong>Etiqueta:</strong> {{ tarea.etiqueta.nombre }}
+                        {% endif %}
+                    </p>
+                    {% if tarea.descripcion %}
+                        <p class="tarea-descripcion-corta">{{ tarea.descripcion|truncatewords:20 }}</p>
+                    {% endif %}
+                    <div class="tarea-acciones-perfil">
+                        <a href="{% url 'editar_tarea' tarea.pk %}" class="btn-editar-sm">Editar</a>
+                        <a href="{% url 'borrar_tarea' tarea.pk %}" class="btn-borrar-sm">Borrar</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Aún no has creado ninguna tarea. ¡<a href="{% url 'crear_tarea' %}">Crea tu primera tarea</a>!</p>
+    {% endif %}
 
 </main>
 {% endblock %}

@@ -16,7 +16,12 @@ def home(request):
 # Vista para mostrar el perfil del usuario cuando está logueado
 @login_required
 def perfil_usuario(request):
-    return render(request, 'plantillas/user/perfil_usuario.html')
+    tareas_usuario = Tarea.objects.filter(usuario=request.user).order_by('prioridad', 'fecha_vencimiento')
+    
+    contexto = {
+        'tareas': tareas_usuario
+    }
+    return render(request, 'plantillas/user/perfil_usuario.html', contexto)
 
 # Vista para mostrar el foro
 @login_required

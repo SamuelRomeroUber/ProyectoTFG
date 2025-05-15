@@ -1,0 +1,107 @@
+    .main_listado_simple_tareas {
+        padding: 2rem;
+        max-width: 800px; /* Puede ser más estrecho para una lista simple */
+        margin: 2rem auto;
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        width: 90%;
+    }
+
+    .container-listado-simple h1 {
+        text-align: center;
+        color: #DEA54B;
+        margin-bottom: 25px;
+        font-size: 2.2em;
+    }
+
+    .acciones-listado-simple {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .acciones-listado-simple .btn {
+        display: inline-block;
+        padding: 10px 22px;
+        margin: 5px;
+        text-decoration: none;
+        color: white;
+        border-radius: 25px; /* Botones más redondeados */
+        font-weight: 600;
+        transition: background-color 0.3s, transform 0.2s;
+        font-size: 1em;
+    }
+    .acciones-listado-simple .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .btn-crear {
+        background-color: #DEA54B; 
+    }
+    .btn-crear:hover {
+        background-color: #c48a3a;
+    }
+    .btn-volver {
+        background-color: #6c757d; 
+    }
+    .btn-volver:hover {
+        background-color: #5a6268;
+    }
+
+    .lista-titulos-tareas {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .titulo-tarea-item {
+        margin-bottom: 10px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        transition: background-color 0.2s ease-in-out;
+    }
+    .titulo-tarea-item:hover {
+        background-color: #f0f0f0;
+    }
+
+    .titulo-tarea-item a {
+        display: block; /* Hace todo el área del <li> clickeable si se desea, o se ajusta padding */
+        padding: 15px 20px;
+        text-decoration: none;
+        color: #333;
+        font-size: 1.25em; /* Tamaño de fuente más grande para los títulos */
+        font-weight: 500;
+        border-radius: 8px; /* Para que el hover se vea bien en todo el item */
+        transition: color 0.2s ease-in-out;
+        display: flex; /* Para alinear el checkmark */
+        justify-content: space-between; /* Separa el título del checkmark */
+        align-items: center;
+    }
+
+    .titulo-tarea-item a:hover {
+        color: #DEA54B;
+    }
+    
+    .check-completada {
+        color: #28a745; /* Verde */
+        font-size: 1em; /* Tamaño del checkmark */
+        font-weight: bold;
+    }
+
+    .sin-tareas-mensaje-simple {
+        text-align: center;
+        font-size: 1.1em;
+        color: #555;
+        margin-top: 30px;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+    }
+    .sin-tareas-mensaje-simple a {
+        color: #DEA54B;
+        font-weight: bold;
+        text-decoration: none;
+    }
+    .sin-tareas-mensaje-simple a:hover {
+        text-decoration: underline;
+    }

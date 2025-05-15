@@ -1,27 +1,52 @@
 {% extends 'plantillas/base.html' %}
+{% load static %}
 
 {% block contenido %}
-<main class="main-detalle">
-    <div class="container-detalle">
-        <h1>{{object.titulo}}</h1>
+<main class="main_detalle_tarea">
+    <div class="container-detalle-tarea">
+        <header class="detalle-header">
+            <h1>{{ tarea.titulo }}</h1>
+            {% if tarea.completada %}
+                <span class="etiqueta-estado completada">Completada</span>
+            {% else %}
+                <span class="etiqueta-estado {{ tarea.estado }}">{{ tarea.get_estado_display }}</span>
+            {% endif %}
+        </header>
 
-        <h2>Detalles</h2>
+        <section class="detalle-contenido">
+            <div class="detalle-info">
+                <h2>Detalles de la Tarea</h2>
+                <p><strong>Descripción:</strong></p>
+                <p class="descripcion-texto">{{ tarea.descripcion|default:"No hay descripción." }}</p>
+                
+                <ul class="info-lista">
+                    <li><strong>Fecha de creación:</strong> {{ tarea.fecha_creacion|date:"d/m/Y H:i" }}</li>
+                    <li><strong>Fecha de vencimiento:</strong> {{ tarea.fecha_vencimiento|date:"d/m/Y H:i"|default:"No especificada" }}</li>
+                    {% if tarea.fecha_completada %}
+                    <li><strong>Fecha de completación:</strong> {{ tarea.fecha_completada|date:"d/m/Y H:i" }}</li>
+                    {% endif %}
+                    <li><strong>Prioridad:</strong> <span class="prioridad-{{ tarea.prioridad }}">{{ tarea.prioridad }}</span> (de 1 a 5)</li>
+                    <li><strong>Visibilidad:</strong> {{ tarea.get_visibilidad_display }}</li>
+                    {% if tarea.etiqueta %}
+                    <li><strong>Etiqueta:</strong> <span class="estilo-etiqueta">{{ tarea.etiqueta.nombre }}</span></li>
+                    {% endif %}
+                </ul>
+                
+                <p class="meta-info">Esta tarea fue creada por: <strong>{{ tarea.usuario.username }}</strong></p>
+            </div>
+        </section>
         
-        <p>Descripción: {{object.descripcion}}<br></p>
-        <p>Fecha de creación: {{object.fecha_creacion}}<br></p>
-        <p>Fecha de vencimiento: {{object.fecha_vencimiento}}<br></p>
-        <p>Estado: {{object.estado}}<br></p>
-        <p>Prioridad: {{object.prioridad}}<br></p>
-        <p>Visibilidad: {{object.visibilidad}}<br></p>
-        <br>
-        <p>Esta tarea ha sido creado por el usuario {{object.usuario}}</p><br>
+        {% if user == tarea.usuario %}
+        <footer class="detalle-acciones">
+            <a href="{% url 'editar_tarea' tarea.pk %}" class="btn btn-editar">Editar Tarea</a>
+            <a href="{% url 'borrar_tarea' tarea.pk %}" class="btn btn-borrar">Borrar Tarea</a>
+        </footer>
+        {% endif %}
 
-        <a href="{% url 'editar_tarea' tarea.pk %}">Editar</a>
-        <a href="{% url 'borrar_tarea' tarea.pk %}">Borrar</a>
-
-        <br>
-        <a href="{% url 'listar_tareas' %}">Volver</a>
+        <div class="volver-link">
+            <a href="{% url 'perfil_usuario' %}" class="btn btn-secundario">Volver al Perfil</a>
+            <a href="{% url 'listar_tareas' %}" class="btn btn-secundario">Volver al Listado</a>
+        </div>
     </div>
-    
 </main>
 {% endblock %}

@@ -1,39 +1,74 @@
 {% extends 'plantillas/base.html' %}
+{% load static %}
 
 {% block contenido %}
-<main class="main_formulario">
-    <div class="formulario_anadir">
-        <h1>Tarea nueva</h1>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Crear Tarea</button>
-        </form>
-
-        {% if form.errors %}
-            <ul>
-                {% for field in form %}
-                    {% for error in field.errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                {% endfor %}
-            </ul>
-        {% endif %}
-            <br>
-        <a href="{% url 'perfil_usuario' %}">Volver</a>
-
-        <link href="https://cdn.jsdelivr.net/npm/tom-select@2.0.0/dist/css/tom-select.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/tom-select@2.0.0/dist/js/tom-select.complete.min.js"></script>
+<main class="main_formulario_tarea"> <!-- Usamos la misma clase principal que en editar_tarea -->
+    <div class="container-formulario-tarea"> <!-- Usamos el mismo contenedor -->
         
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                new TomSelect("#id_etiqueta", {
-                    create: true,  // Permite crear nuevas etiquetas
-                    sortField: "text",  // Ordena las opciones
-                    placeholder: "Selecciona o escribe una etiqueta...",
-                });
-            });
-        </script>
+        {# El título se ajusta automáticamente si form.instance.pk no existe #}
+        <h1>{% if form.instance.pk %}Editar Tarea{% else %}Crear Nueva Tarea{% endif %}</h1>
+        
+        <form method="post" enctype="multipart/form-data" class="formulario-tarea-estilizado"> <!-- Misma clase de formulario -->
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% for field in form %}
+                <div class="form-group {% if field.errors %}has-error{% endif %}">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}
+                        {% if field.field.required %}<span class="required-asterisk">*</span>{% endif %}
+                    </label>
+                    {{ field }} {# Aquí se renderiza el widget del campo del formulario #}
+                    {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <div class="error-message">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            
+            <div class="form-acciones">
+                <button type="submit" class="btn btn-primario">
+                    {# El texto del botón se ajusta automáticamente #}
+                    {% if form.instance.pk %}Guardar Cambios{% else %}Crear Tarea{% endif %}
+                </button>
+                {# El enlace de Cancelar para "crear" usualmente vuelve al perfil o al listado #}
+                <a href="{% url 'perfil_usuario' %}" class="btn btn-secundario">Cancelar</a>
+            </div>
+        </form>
     </div>
 </main>
+
+<!-- TomSelect CSS y JS (como lo tenías) -->
+<link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var etiquetaSelect = document.getElementById('id_etiqueta_tomselect');
+
+        if (etiquetaSelect) {
+            new TomSelect(etiquetaSelect, { // Target el <select> que Django renderiza
+                create: true,
+                sortField: "text",
+                placeholder: "Selecciona o escribe una etiqueta...",
+                render: {
+                    option_create: function(data, escape) {
+                        return '<div class="create">Crear <strong>' + escape(data.input) + '</strong>…</div>';
+                    },
+                    no_results: function(data, escape) {
+                        return '<div class="no-results">No se encontraron resultados.</div>';
+                    }
+                }
+            });
+        }
+    });
+</script>
 {% endblock %}

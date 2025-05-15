@@ -1,27 +1,73 @@
 {% extends 'plantillas/base.html' %}
+{% load static %}
 
 {% block contenido %}
+<main class="main_formulario_tarea">
+    <div class="container-formulario-tarea">
+        <h1>{% if form.instance.pk %}Editar Tarea{% else %}Crear Nueva Tarea{% endif %}</h1>
+        
+        <form method="post" enctype="multipart/form-data" class="formulario-tarea-estilizado">
+            {% csrf_token %}
 
-<form action="" method="post" enctype="multipart/form-data">
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
 
-    {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group {% if field.errors %}has-error{% endif %}">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}
+                        {% if field.field.required %}<span class="required-asterisk">*</span>{% endif %}
+                    </label>
+                    {{ field }}
+                    {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <div class="error-message">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            
+            <div class="form-acciones">
+                <button type="submit" class="btn btn-primario">
+                    {% if form.instance.pk %}Guardar Cambios{% else %}Crear Tarea{% endif %}
+                </button>
+                <a href="{% if form.instance.pk %}{% url 'detalle_tarea' form.instance.pk %}{% else %}{% url 'perfil_usuario' %}{% endif %}" class="btn btn-secundario">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</main>
 
-    {{form.as_p}}
-    
-    <input type="submit"/>
-
-</form>
-<a href="{% url 'listar_tareas' %}">Cancelar</a>
-<link href="https://cdn.jsdelivr.net/npm/tom-select@2.0.0/dist/css/tom-select.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/tom-select@2.0.0/dist/js/tom-select.complete.min.js"></script>
+<!-- TomSelect (ya lo tenías) -->
+<link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        new TomSelect("#id_etiqueta", {
-            create: true,  // Permite crear nuevas etiquetas
-            sortField: "text",  // Ordena las opciones
-            placeholder: "Selecciona o escribe una etiqueta...",
-        });
+        var etiquetaSelect = document.getElementById('id_etiqueta_tomselect') || document.getElementById('id_etiqueta');
+        if (etiquetaSelect) {
+            new TomSelect(etiquetaSelect, {
+                create: true,
+                sortField: "text",
+                placeholder: "Selecciona o escribe una etiqueta...",
+                render: {
+                    option_create: function(data, escape) {
+                        return '<div class="create">Crear <strong>' + escape(data.input) + '</strong>…</div>';
+                    },
+                    no_results: function(data, escape) {
+                        return '<div class="no-results">No se encontraron resultados.</div>';
+                    }
+                }
+            });
+        }
+
+        // Para el campo de fecha y hora, si quieres un placeholder o formato específico
+        // esto se maneja mejor con el widget de Django, pero aquí puedes hacer ajustes visuales si es necesario.
+        // Ejemplo: document.querySelectorAll('input[type="datetime-local"]').forEach(el => ... );
     });
 </script>
 {% endblock %}

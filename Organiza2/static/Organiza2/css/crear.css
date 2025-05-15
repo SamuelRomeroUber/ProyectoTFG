@@ -1,0 +1,135 @@
+    .main_formulario_tarea {
+        padding: 2rem;
+        max-width: 700px;
+        margin: 2rem auto;
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        width: 90%;
+    }
+
+    .container-formulario-tarea h1 {
+        text-align: center;
+        color: #DEA54B;
+        margin-bottom: 25px;
+    }
+
+    .formulario-tarea-estilizado .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .formulario-tarea-estilizado label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        color: #495057;
+    }
+    
+    .required-asterisk {
+        color: red;
+        margin-left: 2px;
+    }
+
+    .formulario-tarea-estilizado input[type="text"],
+    .formulario-tarea-estilizado input[type="datetime-local"],
+    .formulario-tarea-estilizado textarea,
+    .formulario-tarea-estilizado select { /* Esto incluye el <select> base para TomSelect */
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        box-sizing: border-box; 
+        font-size: 1rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    
+    .formulario-tarea-estilizado input[type="checkbox"] {
+        margin-right: 0.5rem;
+        vertical-align: middle; /* Alinea mejor el checkbox con su texto */
+        width: auto; /* Ancho automático para checkboxes */
+    }
+
+    .formulario-tarea-estilizado input:focus,
+    .formulario-tarea-estilizado textarea:focus,
+    .formulario-tarea-estilizado select:focus {
+        border-color: #DEA54B;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(222, 165, 75, 0.25);
+    }
+
+    .form-text.text-muted {
+        font-size: 0.875em;
+        color: #6c757d;
+        margin-top: 0.25rem;
+    }
+
+    .error-message {
+        color: #dc3545;
+        font-size: 0.875em;
+        margin-top: 0.25rem;
+    }
+    
+    .alert.alert-danger { 
+        background-color: #f8d7da;
+        color: #721c24;
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 1rem;
+        border: 1px solid #f5c6cb;
+        border-radius: 0.25rem;
+    }
+
+    .form-acciones {
+        margin-top: 2rem;
+        padding-top: 1rem;
+        border-top: 1px solid #eee;
+        text-align: right; 
+    }
+
+    .form-acciones .btn {
+        padding: 0.6rem 1.2rem;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        margin-left: 0.5rem;
+        border: none;
+    }
+
+    .btn-primario {
+        background-color: #DEA54B;
+        color: white;
+        border: 1px solid #DEA54B;
+    }
+    .btn-primario:hover {
+        background-color: #c48a3a;
+        transform: translateY(-1px);
+    }
+
+    .btn-secundario {
+        background-color: #6c757d;
+        color: white;
+        border: 1px solid #6c757d;
+    }
+    .btn-secundario:hover {
+        background-color: #5a6268;
+        transform: translateY(-1px);
+    }
+
+    /* Estilos para TomSelect (asegúrate que tom-select.bootstrap5.min.css se cargue si usas Bootstrap) */
+    /* Si no usas Bootstrap, el CSS por defecto de TomSelect necesitará ajustes o usa el tom-select.css normal */
+    .ts-wrapper .ts-control { /* Estilo base de TomSelect */
+        border-radius: 0.25rem !important; 
+        border-color: #ced4da !important;
+        padding: 0.6rem 0.75rem !important; /* Ajusta padding para consistencia con otros inputs */
+        line-height: 1.5; /* Ajusta para mejor alineación vertical del texto */
+        min-height: calc(1.5em + 1.5rem + 2px); /* Para que tenga altura similar a otros inputs */
+    }
+    .ts-wrapper.focus .ts-control { /* TomSelect en foco */
+        border-color: #DEA54B !important;
+        box-shadow: 0 0 0 0.2rem rgba(222, 165, 75, 0.25) !important;
+    }
+    .ts-dropdown { /* Menú desplegable de TomSelect */
+        border-color: #ced4da !important;
+        border-top: none !important; /* Para que no se vea doble borde con el control */
+    }
