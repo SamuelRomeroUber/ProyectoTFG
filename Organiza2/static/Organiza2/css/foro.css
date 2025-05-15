@@ -1,0 +1,144 @@
+/* Barra de navegación con bordes redondeados y márgenes */
+.nav_foro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #DEA54B;
+    border-radius: 50px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 1200px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav_foro.nav-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 1000;
+    width: 90%;
+    max-width: 1200px;
+    border-radius: 0 0 50px 50px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+/* Items del menú */
+.nav_foro ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1.5rem;
+    margin-left: 20px;
+}
+
+.nav_foro ul li {
+    padding: 0.5rem 0;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav_foro ul li:hover {
+    color: #f8f8f8;
+}
+
+/* Efecto subrayado al hover */
+.nav_foro ul li::after {
+    content: ''; 
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    transition: width 0.3s ease;
+}
+
+.nav_foro ul li:hover::after {
+    width: 100%;
+}
+
+.nav_foro a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+}
+
+/* Contenedor de botones */
+.nav_foro .btn-container {
+    display: flex;
+    gap: 1rem;
+    margin-right: 20px;
+}
+
+/* Estilos base para botones */
+.btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Botón Iniciar Sesión */
+.btn[href*="login"] {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+}
+
+.btn[href*="login"]:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Botón Registrarse */
+.btn[href*="registro"] {
+    background-color: white;
+    color: #DEA54B;
+    border: 1px solid white;
+}
+
+.btn[href*="registro"]:hover {
+    background-color: #f8f8f8;
+    transform: translateY(-2px);
+}
+
+/* Efecto para ambos botones */
+.btn:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.cerrar_sesion {
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background-color: white;
+    color: #DEA54B;
+    border: 1px solid white;
+}
+.cerrar_sesion:hover {
+    background-color: #f8f8f8;
+    transform: translateY(-2px);
+}
+
+/* Contenido principal */
+.main_foro {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 90%;
+}

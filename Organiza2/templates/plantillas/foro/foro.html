@@ -2,24 +2,23 @@
 
 {% block contenido %}
 <header>
-    <nav class="nav_perfil">
+    <nav class="nav_foro">
         <ul>
-            <li><a href="{% url 'foro' %}">Foro</a></li>
-            <li>Para el</li>
-            <li>Nav</li>
+            <li>Prueba</li>
+            <li>Favoritos</li>
+            <li><a href="{% url 'perfil_usuario' %}">Mi perfil</a></li>
         </ul>
         
         <form action="{% url 'logout' %}" method="post">
             {% csrf_token %} 
             <button type="submit" class="cerrar_sesion">Cerrar Sesión</button>
         </form>
-
     </nav>
 </header>
 
-<main class="main_perfil">
+<main class="main_foro">
 
-    <h1>Perfil Usuario</h1>
+    <h1>Foro</h1>
 
     <a href="{% url 'crear_tarea' %}">Nueva tarea</a>
     <a href="{% url 'listar_tareas' %}">Listar tareas</a>

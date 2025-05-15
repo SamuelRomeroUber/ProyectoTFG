@@ -11,12 +11,17 @@ from django.contrib.auth.decorators import login_required
 
 # Esta es la vista principal de la aplicación
 def home(request):
-    return render(request, 'plantillas/home.html')
+    return render(request, 'plantillas/index.html')
 
 # Vista para mostrar el perfil del usuario cuando está logueado
 @login_required
 def perfil_usuario(request):
     return render(request, 'plantillas/user/perfil_usuario.html')
+
+# Vista para mostrar el foro
+@login_required
+def foro(request):
+    return render(request, 'plantillas/foro/foro.html')
 
 # Vista para el registro de un nuevo usuario
 class RegistroView(CreateView):
