@@ -48,7 +48,7 @@ Este proyecto fue desarrollado con varios propósitos en mente:
     *   Edición de tareas existentes.
     *   Eliminación de tareas.
     *   Visualización detallada de cada tarea.
-*   **Perfiles de Usuario:** Espacio personal para cada usuario (base para futuras expansiones).
+*   **Perfiles de Usuario:** Espacio personal para cada usuario donde se podrá hace el CRUD de las tareas.
 *   **Etiquetas Dinámicas para Tareas:** Los usuarios pueden asignar etiquetas existentes o crear nuevas sobre la marcha para categorizar sus tareas.
 *   **Foro:** Una sección básica de foro para la interacción entre usuarios (funcionalidad inicial).
 *   **Interfaz Amigable:** Diseño limpio y funcional con CSS personalizado.
@@ -57,8 +57,8 @@ Este proyecto fue desarrollado con varios propósitos en mente:
 ## Tecnologías Utilizadas 🛠️
 
 *   **Backend:**
-    *   Python 3.x
-    *   Django 5.x
+    *   Python 3.13.2
+    *   Django 5.2.1
 *   **Frontend:**
     *   HTML5
     *   CSS3
@@ -68,7 +68,7 @@ Este proyecto fue desarrollado con varios propósitos en mente:
     *   SQLite3 (para desarrollo local)
 *   **Despliegue:**
     *   Render (para la aplicación principal Django)
-    *   GitHub Pages (para el despliegue de contenido estático a través de GitHub Actions, según `static.yml`)
+    *   GitHub Pages (para el despliegue de contenido estático a través de GitHub Actions)
 *   **Control de Versiones:**
     *   Git
     *   GitHub
@@ -78,7 +78,7 @@ Este proyecto fue desarrollado con varios propósitos en mente:
 
 ## Estructura del Proyecto
 
-La estructura del proyecto sigue las convenciones de Django:
+La estructura del proyecto sigue las formas de Django:
 
 *   `proyectoTFG/`: Contiene la configuración principal del proyecto Django (`settings.py`, `urls.py`, `wsgi.py`, `asgi.py`).
 *   `Organiza2/`: Es la aplicación Django principal que contiene:
@@ -97,9 +97,8 @@ La estructura del proyecto sigue las convenciones de Django:
 *   `.gitignore`: Especifica los archivos y directorios que Git debe ignorar.
 *   `requirements.txt` (No provisto en el Markdown, pero esencial): Debería listar todas las dependencias de Python.
 
-*Este repositorio ha sido consolidado usando [Repomix](https://repomix.com/). La estructura detallada de directorios y el contenido de los archivos se encuentra en el documento Markdown proporcionado por esta herramienta.*
 
-## Puesta en Marcha 本地
+## Puesta en Marcha
 
 Para ejecutar este proyecto localmente, sigue estos pasos:
 
@@ -188,12 +187,8 @@ Las contribuciones son bienvenidas. Si deseas mejorar Organiza2:
 
 Para cambios mayores, por favor abre un issue primero para discutir lo que te gustaría cambiar.
 
-## Licencia 📄
-
-Distribuido bajo la Licencia MIT. Ver `LICENSE` para más información. (Asegúrate de añadir un archivo `LICENSE` a tu repositorio, por ejemplo, con el texto de la licencia MIT).
-
 ## Contacto 📧
 
-Tu Nombre - [@TuUsuarioTwitter](https://twitter.com/TuUsuarioTwitter) - tuemail@example.com
+Samuel Romero Uber - samueldelatorreuber2517@gmail.com
 
-Enlace al Proyecto: [https://github.com/tu-usuario/Organiza2](https://github.com/tu-usuario/Organiza2)
+Enlace al Proyecto: [https://github.com/SamuelRomeroUber/ProyectoTFG.git](https://github.com/SamuelRomeroUber/ProyectoTFG.git)
