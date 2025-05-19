@@ -92,7 +92,7 @@ La estructura del proyecto sigue las formas de Django:
     *   `admin.py`: Configuración para el panel de administración de Django.
 *   `.github/workflows/static.yml`: Workflow de GitHub Actions para desplegar contenido estático.
 *   `manage.py`: Utilidad de línea de comandos de Django.
-*   `Procfile`: Para la configuración de despliegue en plataformas como Heroku/Render (especifica el comando web con Gunicorn).
+*   `Procfile`: Para la configuración de despliegue Render (especifica el comando web con Gunicorn).
 *   `render.yaml`: Archivo de configuración "Infrastructure as Code" para desplegar en Render.
 *   `.gitignore`: Especifica los archivos y directorios que Git debe ignorar.
 *   `requirements.txt` (No provisto en el Markdown, pero esencial): Debería listar todas las dependencias de Python.
@@ -113,7 +113,7 @@ Para ejecutar este proyecto localmente, sigue estos pasos:
 
 1.  **Clona el repositorio:**
     ```bash
-    git clone https://github.com/tu-usuario/Organiza2.git
+    git clone https://github.com/SamuelRomeroUber/Organiza2.git
     cd Organiza2
     ```
 
@@ -174,7 +174,7 @@ Una vez que la aplicación esté en funcionamiento (localmente o desplegada):
     *   Ver la lista de tus tareas.
     *   Editar o eliminar tareas existentes.
 4.  **Foro:** Explora la sección del foro para interactuar.
-
+<!--
 ## Contribuciones 🤝
 
 Las contribuciones son bienvenidas. Si deseas mejorar Organiza2:
@@ -186,7 +186,7 @@ Las contribuciones son bienvenidas. Si deseas mejorar Organiza2:
 5.  Abre un Pull Request.
 
 Para cambios mayores, por favor abre un issue primero para discutir lo que te gustaría cambiar.
-
+ -->
 ## Contacto 📧
 
 Samuel Romero Uber - samueldelatorreuber2517@gmail.com
