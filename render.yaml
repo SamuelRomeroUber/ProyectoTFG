@@ -4,9 +4,10 @@ services:
     env: python
     buildCommand: |
       pip install -r requirements.txt
-      python manage.py migrate
       python manage.py collectstatic --noinput
-    startCommand: gunicorn proyectoTFG.wsgi:application
+    startCommand: |
+      python manage.py migrate --noinput
+      gunicorn proyectoTFG.wsgi:application
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: proyectoTFG.settings
