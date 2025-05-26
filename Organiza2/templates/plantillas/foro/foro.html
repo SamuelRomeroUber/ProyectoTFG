@@ -1,12 +1,12 @@
 {% extends 'plantillas/base.html' %}
+{% load static %} {# Asegúrate que static está cargado si usas CSS de perfil o algo así #}
 
 {% block contenido %}
 <header>
     <nav class="nav_foro">
         <ul>
-            <li>Prueba</li>
-            <li>Favoritos</li>
-            <li><a href="{% url 'perfil_usuario' %}">Mi perfil</a></li>
+            <li><a href="{% url 'perfil_usuario' %}" style="color:inherit;text-decoration:none;">Mi Perfil</a></li>
+            <li><a href="{% url 'listar_tareas' %}" style="color:inherit;text-decoration:none;">Mis Tareas</a></li>
         </ul>
         
         <form action="{% url 'logout' %}" method="post">
@@ -18,10 +18,42 @@
 
 <main class="main_foro">
 
-    <h1>Foro</h1>
+    <h1>Foro de Tareas Públicas</h1>
+    <p>Aquí puedes ver tareas que otros usuarios han marcado como públicas.</p>
+    <hr>
 
-    <a href="{% url 'crear_tarea' %}">Nueva tarea</a>
-    <a href="{% url 'listar_tareas' %}">Listar tareas</a>
+    {% if tareas_publicas %}
+        <div class="lista-tareas-foro">
+            {% for tarea in tareas_publicas %}
+                <div class="tarea-item-foro">
+                    <h3>
+                        <a href="{% url 'detalle_tarea' tarea.pk %}">{{ tarea.titulo }}</a>
+                        {% if tarea.completada %}
+                            <span style="font-size: 0.8em; color: green; font-weight: bold;">(Completada)</span>
+                        {% endif %}
+                    </h3>
+                    <p>
+                        <strong>Creador:</strong> {{ tarea.usuario.username }} |
+                        <strong>Estado:</strong> {{ tarea.get_estado_display }} | 
+                        <strong>Prioridad:</strong> {{ tarea.prioridad }} |
+                        <strong>Vencimiento:</strong> {{ tarea.fecha_vencimiento|date:"d/m/Y H:i"|default:"Sin fecha" }}
+                        {% if tarea.etiqueta %}
+                            | <strong>Etiqueta:</strong> {{ tarea.etiqueta.nombre }}
+                        {% endif %}
+                    </p>
+                    {% if tarea.descripcion %}
+                        <p>{{ tarea.descripcion|truncatewords:30 }}</p>
+                    {% endif %}
+                    <div class="tarea-acciones-foro">
+                        <a href="{% url 'detalle_tarea' tarea.pk %}">Ver Detalles</a>
+                        {# Aquí podrías añadir un botón para "Copiar Tarea" en el futuro si quisieras #}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No hay tareas públicas disponibles en este momento.</p>
+    {% endif %}
 
 </main>
 {% endblock %}

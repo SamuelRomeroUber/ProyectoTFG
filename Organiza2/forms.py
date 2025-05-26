@@ -1,60 +1,43 @@
 from django import forms
 from .models import Tarea, Etiqueta
 from django.utils import timezone
-from django.forms import ModelChoiceField, ValidationError # Asegúrate de importar ValidationError
+from django.forms import ModelChoiceField, ValidationError
 
-# --- NUEVO CAMPO PERSONALIZADO ---
+# --- CreatableModelChoiceField (sin cambios) ---
 class CreatableModelChoiceField(ModelChoiceField):
     def clean(self, value):
-        # value es la cadena raw de la subida del formulario.
-        # TomSelect envía el PK para ítems existentes, o el texto para ítems nuevos.
         if value in self.empty_values:
             return None
-
-        # Intenta encontrar por PK primero (para etiquetas existentes seleccionadas)
         try:
             obj = self.queryset.get(**{self.to_field_name or 'pk': value})
             return obj
         except (ValueError, TypeError, self.queryset.model.DoesNotExist):
-            # Si no es un PK válido o no se encuentra por PK, asume que es un nombre nuevo.
             if isinstance(value, str):
-                # Normaliza el valor (ej. quitar espacios, convertir a minúsculas si es necesario)
                 normalized_value = value.strip()
-                if not normalized_value: # Manejar cadena vacía después de strip
+                if not normalized_value:
                     return None
-                
-                # Intenta obtener o crear la etiqueta por su nombre
-                # Asumimos que el campo para crear/buscar es 'nombre'
                 try:
                     obj, created = self.queryset.get_or_create(
-                        nombre=normalized_value, 
-                        defaults={'nombre': normalized_value} # Asegura que 'nombre' se guarde
+                        nombre=normalized_value,
+                        defaults={'nombre': normalized_value}
                     )
                     return obj
                 except Exception as e:
-                    # Esto podría capturar IntegrityError si 'nombre' no es único y hay un conflicto,
-                    # o otros errores de base de datos.
-                    # Considera loggear el error 'e' para depuración.
                     raise ValidationError(f"No se pudo crear o encontrar la etiqueta: '{value}'. Verifique que el nombre sea único.")
             else:
-                # Este caso no debería alcanzarse si TomSelect envía cadenas.
                 raise ValidationError(self.error_messages['invalid_choice'], code='invalid_choice')
-# --- FIN NUEVO CAMPO PERSONALIZADO ---
 
 class TareaForm(forms.ModelForm):
-    # --- MODIFICACIÓN AQUÍ ---
     etiqueta = CreatableModelChoiceField(
         queryset=Etiqueta.objects.all(),
         required=False,
-        widget=forms.Select(attrs={  # TomSelect mejorará este <select>
-            'class': 'form-select', # Mantenemos para estilos generales si los hay
-            'id': 'id_etiqueta_tomselect', # ID explícito para el JS de TomSelect
-            # TomSelect recogerá el placeholder del <script>
+        widget=forms.Select(attrs={
+            'class': 'form-select',
+            'id': 'id_etiqueta_tomselect',
         }),
         label='Etiqueta',
         help_text="Selecciona una etiqueta existente o escribe un nuevo nombre para crearla."
     )
-    # --- FIN MODIFICACIÓN ---
 
     class Meta:
         model = Tarea
@@ -62,10 +45,10 @@ class TareaForm(forms.ModelForm):
             'titulo',
             'descripcion',
             'fecha_vencimiento',
-            'estado',
+            'estado',           # Mantenemos estado
             'visibilidad',
-            'completada',
-            'etiqueta', # Ahora 'etiqueta' usará nuestro campo personalizado
+            # 'completada',     # Eliminamos este campo del formulario
+            'etiqueta',
             'prioridad',
         ]
         widgets = {
@@ -82,16 +65,13 @@ class TareaForm(forms.ModelForm):
                 'class': 'form-control',
                 'type': 'datetime-local'
             }),
-            'estado': forms.Select(attrs={
+            'estado': forms.Select(attrs={  # El widget se mantiene, pero ajustaremos choices
                 'class': 'form-select'
             }),
             'visibilidad': forms.Select(attrs={
                 'class': 'form-select'
             }),
-            'completada': forms.CheckboxInput(attrs={
-                'class': 'form-check-input'
-            }),
-            # El widget para 'etiqueta' se define arriba
+            # El widget para 'completada' se elimina ya que el campo no está
             'prioridad': forms.Select(attrs={
                 'class': 'form-select'
             }),
@@ -102,8 +82,6 @@ class TareaForm(forms.ModelForm):
             'fecha_vencimiento': 'Fecha de vencimiento',
             'estado': 'Estado',
             'visibilidad': 'Visibilidad',
-            'completada': '¿Completada?',
-            # 'etiqueta': 'Etiqueta', # Definido en el campo mismo
             'prioridad': 'Prioridad',
         }
 
@@ -111,18 +89,27 @@ class TareaForm(forms.ModelForm):
         user = kwargs.pop('user', None)
         super(TareaForm, self).__init__(*args, **kwargs)
         
+        # Ajustar las opciones para el campo 'estado'
+        # Excluimos la opción 'completada' del formulario
+        estado_choices = [choice for choice in Tarea.ESTADO_CHOICES if choice[0] != 'completada']
+        self.fields['estado'].choices = estado_choices
+        
+        # Si la tarea ya existe y está completada, mantenemos el estado 'completada'
+        # pero el select no lo mostrará como opción editable si no está entre las choices.
+        # Esto es más para la edición, para creación no importa.
+        if self.instance and self.instance.pk and self.instance.estado == 'completada':
+             # Si quieres que aparezca "Completada" si YA está completada (solo visual, no seleccionable)
+             # podrías añadirlo dinámicamente, o simplemente dejar que el modelo maneje esto.
+             # Por ahora, si está completada, el select mostrará el primer estado disponible o vacío.
+             # Lo ideal es que si está completada, no se edite el estado desde aquí directamente.
+             # La lógica de completar se hará con el tick.
+             pass # Dejamos que el valor inicial se establezca, pero 'completada' no será una opción nueva a elegir
+
         self.fields['prioridad'].choices = [(i, str(i)) for i in range(1, 6)]
         
         if user:
             self.instance.usuario = user
 
-    # Ya no necesitas clean_etiqueta aquí porque CreatableModelChoiceField lo maneja
-    # def clean_etiqueta(self):
-    #     ...
-
     def clean_fecha_vencimiento(self):
         fecha_vencimiento = self.cleaned_data.get('fecha_vencimiento')
-        # Permitir fechas de vencimiento en el pasado si es necesario, o mantener la validación
-        # if fecha_vencimiento and fecha_vencimiento < timezone.now():
-        #     raise forms.ValidationError("La fecha de vencimiento no puede ser en el pasado.")
         return fecha_vencimiento

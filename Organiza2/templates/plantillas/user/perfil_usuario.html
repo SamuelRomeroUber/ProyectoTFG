@@ -1,19 +1,19 @@
 {% extends 'plantillas/base.html' %}
+{% load static %} {# Asegúrate que static está cargado #}
 
 {% block contenido %}
 <header>
     <nav class="nav_perfil">
         <ul>
             <li><a href="{% url 'foro' %}">Foro</a></li>
-            <li>Para el</li>
-            <li>Nav</li>
+            <!-- Quita 'Para el' y 'Nav' o reemplázalos con enlaces reales -->
+            <li><a href="#mis-tareas">Mis Tareas</a></li> 
         </ul>
         
         <form action="{% url 'logout' %}" method="post">
             {% csrf_token %} 
             <button type="submit" class="cerrar_sesion">Cerrar Sesión</button>
         </form>
-
     </nav>
 </header>
 
@@ -25,19 +25,19 @@
 
     <h2>Acciones Rápidas</h2>
     <a href="{% url 'crear_tarea' %}" class="btn-accion">Nueva tarea</a>
-    <a href="{% url 'listar_tareas' %}" class="btn-accion">Ver todas mis tareas (Listado completo)</a>
+    <a href="{% url 'listar_tareas' %}" class="btn-accion">Ver todas mis tareas</a>
     <hr>
 
-    <h2 id="mis-tareas">Mis Tareas Recientes/Pendientes</h2>
+    <h2 id="mis-tareas">Mis Tareas</h2>
 
     {% if tareas %}
         <div class="lista-tareas-perfil">
             {% for tarea in tareas %}
-                <div class="tarea-item-perfil">
+                <div class="tarea-item-perfil {% if tarea.completada %}tarea-completada-visual{% endif %}">
                     <h3>
                         <a href="{% url 'detalle_tarea' tarea.pk %}">{{ tarea.titulo }}</a>
                         {% if tarea.completada %}
-                            <span class="badge-completada">(Completada)</span>
+                            <span class="badge-completada">(Completada ✔️)</span>
                         {% endif %}
                     </h3>
                     <p class="tarea-meta">
@@ -52,8 +52,19 @@
                         <p class="tarea-descripcion-corta">{{ tarea.descripcion|truncatewords:20 }}</p>
                     {% endif %}
                     <div class="tarea-acciones-perfil">
-                        <a href="{% url 'editar_tarea' tarea.pk %}" class="btn-editar-sm">Editar</a>
+                        {% if not tarea.completada %}
+                            <a href="{% url 'editar_tarea' tarea.pk %}" class="btn-editar-sm">Editar</a>
+                        {% endif %}
                         <a href="{% url 'borrar_tarea' tarea.pk %}" class="btn-borrar-sm">Borrar</a>
+                        
+                        {# --- BOTÓN TICK PARA MARCAR COMPLETADA --- #}
+                        {% if not tarea.completada %}
+                        <form action="{% url 'marcar_tarea_completada' tarea.pk %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-marcar-completada-sm" title="Marcar como completada">✔️</button>
+                        </form>
+                        {% endif %}
+                        {# --- FIN BOTÓN TICK --- #}
                     </div>
                 </div>
             {% endfor %}
@@ -63,4 +74,5 @@
     {% endif %}
 
 </main>
+
 {% endblock %}

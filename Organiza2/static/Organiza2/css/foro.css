@@ -1,15 +1,17 @@
-/* Barra de navegación con bordes redondeados y márgenes */
+/* Organiza2/static/Organiza2/css/foro.css */
+
+/* --- Estilos de Navegación (Consistente con nav_home.css, nav_perfil.css) --- */
 .nav_foro {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: #DEA54B;
-    border-radius: 50px;
+    background-color: #DEA54B; /* Color principal */
+    border-radius: 50px; /* Bordes redondeados característicos */
     margin: 20px auto;
     width: 90%;
     max-width: 1200px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 
 .nav_foro.nav-fixed {
@@ -21,11 +23,10 @@
     z-index: 1000;
     width: 90%;
     max-width: 1200px;
-    border-radius: 0 0 50px 50px;
+    border-radius: 0 0 50px 50px; /* Bordes inferiores redondeados cuando está fijo */
     box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
 
-/* Items del menú */
 .nav_foro ul {
     display: flex;
     list-style: none;
@@ -48,7 +49,6 @@
     color: #f8f8f8;
 }
 
-/* Efecto subrayado al hover */
 .nav_foro ul li::after {
     content: ''; 
     position: absolute;
@@ -64,59 +64,19 @@
     width: 100%;
 }
 
-.nav_foro a {
+.nav_foro a { /* Enlaces dentro de la navegación */
     text-decoration: none;
     color: white;
     font-weight: 500;
 }
 
-/* Contenedor de botones */
-.nav_foro .btn-container {
+.nav_foro .btn-container { /* Si tuvieras botones de login/registro aquí */
     display: flex;
     gap: 1rem;
     margin-right: 20px;
 }
 
-/* Estilos base para botones */
-.btn {
-    padding: 0.6rem 1.2rem;
-    border-radius: 30px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-/* Botón Iniciar Sesión */
-.btn[href*="login"] {
-    background-color: transparent;
-    color: white;
-    border: 1px solid white;
-}
-
-.btn[href*="login"]:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-}
-
-/* Botón Registrarse */
-.btn[href*="registro"] {
-    background-color: white;
-    color: #DEA54B;
-    border: 1px solid white;
-}
-
-.btn[href*="registro"]:hover {
-    background-color: #f8f8f8;
-    transform: translateY(-2px);
-}
-
-/* Efecto para ambos botones */
-.btn:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-.cerrar_sesion {
+.cerrar_sesion { /* Botón de cerrar sesión, estilo consistente */
     padding: 0.6rem 1.2rem;
     border-radius: 30px;
     font-weight: 600;
@@ -130,15 +90,142 @@
 .cerrar_sesion:hover {
     background-color: #f8f8f8;
     transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
+/* --- Fin Estilos de Navegación --- */
 
-/* Contenido principal */
+
+/* --- Contenido Principal del Foro (Consistente con main_home.css, main_perfil.css) --- */
 .main_foro {
     padding: 2rem;
-    max-width: 1200px;
-    margin: 2rem auto;
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    width: 90%;
+    max-width: 1200px; /* Ancho máximo del contenido */
+    margin: 2rem auto; /* Centrado y con margen superior/inferior */
+    background-color: white; /* Fondo blanco para el contenido */
+    border-radius: 15px; /* Bordes redondeados del contenedor principal */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra del contenedor */
+    width: 90%; /* Ancho relativo */
+}
+
+.main_foro h1 {
+    color: #DEA54B; /* Color principal para títulos */
+    text-align: center;
+    margin-bottom: 10px; /* Espacio después del título */
+    font-size: 2.2em; /* Tamaño de fuente consistente con otros h1 principales */
+}
+
+.main_foro > p { /* Párrafo introductorio directo dentro de main_foro */
+    text-align: center;
+    color: #555;
+    margin-bottom: 25px;
+    font-size: 1.1em;
+}
+
+.main_foro hr {
+    border: 0;
+    height: 1px;
+    background-color: #eee; /* Separador sutil */
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+/* --- Lista de Tareas en el Foro --- */
+.lista-tareas-foro {
+    margin-top: 20px;
+    /* Opcional: Usar grid para un layout de tarjetas más moderno */
+    /* display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+    gap: 20px; */
+}
+
+.tarea-item-foro {
+    background-color: #f9f9f9; /* Fondo claro para cada item, como en perfil */
+    border: 1px solid #eee;     /* Borde sutil, como en perfil */
+    padding: 15px;              /* Padding, como en perfil */
+    margin-bottom: 15px;        /* Margen inferior, como en perfil (si no usas grid gap) */
+    border-radius: 8px;         /* Bordes redondeados, como en perfil */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Sombra sutil, como en perfil */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Efecto hover sutil */
+}
+
+.tarea-item-foro:hover {
+    transform: translateY(-2px); /* Ligero levantamiento al pasar el mouse */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08); /* Sombra un poco más pronunciada al hover */
+}
+
+.tarea-item-foro h3 {
+    margin-top: 0;
+    margin-bottom: 5px; /* Espacio como en perfil */
+    font-size: 1.25em;  /* Tamaño de título de tarea */
+}
+
+.tarea-item-foro h3 a {
+    color: #333; /* Color de enlace estándar */
+    text-decoration: none;
+    font-weight: 600; /* Un poco más de énfasis en el título */
+}
+
+.tarea-item-foro h3 a:hover {
+    text-decoration: underline;
+    color: #DEA54B; /* Color principal al hover */
+}
+
+/* Para la etiqueta "Completada" si la muestras en el foro */
+.tarea-item-foro .badge-completada { 
+    font-size: 0.8em;
+    color: green;
+    font-weight: bold;
+    margin-left: 8px;
+}
+
+.tarea-meta-foro { /* Meta información de la tarea */
+    font-size: 0.9em; /* Consistente con perfil */
+    color: #555;     /* Consistente con perfil */
+    margin-bottom: 10px; /* Consistente con perfil */
+    line-height: 1.5;
+}
+.tarea-meta-foro strong {
+    color: #333; /* Un poco más oscuro para los "strong" */
+}
+
+.tarea-descripcion-corta-foro { /* Descripción breve */
+    font-size: 0.95em; /* Consistente con perfil */
+    color: #444;      /* Consistente con perfil */
+    margin-bottom: 10px; /* Consistente con perfil */
+    line-height: 1.6;
+}
+
+.tarea-acciones-foro {
+    margin-top: 10px;
+    text-align: right; /* Alinea el botón a la derecha, o left/center según prefieras */
+}
+
+/* Botón para ver detalles, estilo similar a btn-accion de perfil.css */
+.tarea-acciones-foro .btn-ver-detalles { 
+    display: inline-block;
+    padding: 8px 15px; /* Similar a btn-accion */
+    background-color: #DEA54B; /* Color principal */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px; /* Bordes redondeados como btn-accion */
+    font-weight: 600; /* Peso de fuente */
+    font-size: 0.9em; /* Tamaño de fuente */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none; /* Sin borde por defecto */
+}
+
+.tarea-acciones-foro .btn-ver-detalles:hover {
+    background-color: #c48a3a; /* Oscurece al hover */
+    transform: translateY(-1px); /* Pequeño efecto de elevación */
+}
+
+/* Mensaje cuando no hay tareas públicas */
+.main_foro .sin-tareas-mensaje { /* Renombrado para claridad */
+    text-align: center;
+    font-size: 1.1em;
+    color: #555;
+    margin-top: 40px;
+    padding: 25px;
+    background-color: #f9f9f9; /* Fondo ligero */
+    border-radius: 8px; /* Bordes redondeados */
+    border: 1px dashed #ddd; /* Borde punteado para destacar */
 }
