@@ -1,6 +1,6 @@
     .main_listado_simple_tareas {
         padding: 2rem;
-        max-width: 800px; /* Puede ser más estrecho para una lista simple */
+        max-width: 800px;
         margin: 2rem auto;
         background-color: #fff;
         border-radius: 15px;
@@ -26,7 +26,7 @@
         margin: 5px;
         text-decoration: none;
         color: white;
-        border-radius: 25px; /* Botones más redondeados */
+        border-radius: 25px;
         font-weight: 600;
         transition: background-color 0.3s, transform 0.2s;
         font-size: 1em;
@@ -65,16 +65,16 @@
     }
 
     .titulo-tarea-item a {
-        display: block; /* Hace todo el área del <li> clickeable si se desea, o se ajusta padding */
+        display: block;
         padding: 15px 20px;
         text-decoration: none;
         color: #333;
-        font-size: 1.25em; /* Tamaño de fuente más grande para los títulos */
+        font-size: 1.25em;
         font-weight: 500;
-        border-radius: 8px; /* Para que el hover se vea bien en todo el item */
+        border-radius: 8px;
         transition: color 0.2s ease-in-out;
-        display: flex; /* Para alinear el checkmark */
-        justify-content: space-between; /* Separa el título del checkmark */
+        display: flex;
+        justify-content: space-between;
         align-items: center;
     }
 
@@ -83,8 +83,8 @@
     }
     
     .check-completada {
-        color: #28a745; /* Verde */
-        font-size: 1em; /* Tamaño del checkmark */
+        color: #28a745;
+        font-size: 1em;
         font-weight: bold;
     }
 

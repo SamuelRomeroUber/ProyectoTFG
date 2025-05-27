@@ -2,8 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
-# El modelo Etiqueta debe estar definido ANTES que Tarea si lo refieres directamente,
-# o puedes usar una cadena 'Etiqueta' en el ForeignKey.
 class Etiqueta(models.Model):
     nombre = models.CharField(max_length=50, unique=True, verbose_name='Nombre de la etiqueta')
     
@@ -31,15 +29,13 @@ class Tarea(models.Model):
     completada = models.BooleanField(default=False, verbose_name='Completada')
     fecha_completada = models.DateTimeField(blank=True, null=True, verbose_name='Fecha de completación')
     
-    # --- MODIFICACIÓN AQUÍ ---
     etiqueta = models.ForeignKey(
         Etiqueta, 
-        on_delete=models.SET_NULL, # O models.PROTECT, o lo que prefieras
+        on_delete=models.SET_NULL,
         null=True, 
         blank=True, 
         verbose_name='Etiqueta'
     )
-    # --- FIN MODIFICACIÓN ---
     
     prioridad = models.PositiveIntegerField(default=1, verbose_name='Prioridad (1-5)', choices=[(i, str(i)) for i in range(1, 6)])
     

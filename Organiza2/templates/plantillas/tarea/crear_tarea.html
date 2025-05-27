@@ -2,13 +2,13 @@
 {% load static %}
 
 {% block contenido %}
-<main class="main_formulario_tarea"> <!-- Usamos la misma clase principal que en editar_tarea -->
-    <div class="container-formulario-tarea"> <!-- Usamos el mismo contenedor -->
+<main class="main_formulario_tarea">
+    <div class="container-formulario-tarea">
         
         {# El título se ajusta automáticamente si form.instance.pk no existe #}
         <h1>{% if form.instance.pk %}Editar Tarea{% else %}Crear Nueva Tarea{% endif %}</h1>
         
-        <form method="post" enctype="multipart/form-data" class="formulario-tarea-estilizado"> <!-- Misma clase de formulario -->
+        <form method="post" enctype="multipart/form-data" class="formulario-tarea-estilizado">
             {% csrf_token %}
 
             {% if form.non_field_errors %}
@@ -46,7 +46,6 @@
     </div>
 </main>
 
-<!-- TomSelect CSS y JS (como lo tenías) -->
 <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
 
@@ -55,7 +54,7 @@
         var etiquetaSelect = document.getElementById('id_etiqueta_tomselect');
 
         if (etiquetaSelect) {
-            new TomSelect(etiquetaSelect, { // Target el <select> que Django renderiza
+            new TomSelect(etiquetaSelect, {
                 create: true,
                 sortField: "text",
                 placeholder: "Selecciona o escribe una etiqueta...",

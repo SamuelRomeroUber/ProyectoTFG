@@ -1,6 +1,6 @@
     .main_formulario_tarea {
         padding: 2rem;
-        max-width: 700px; /* Un poco más estrecho para formularios */
+        max-width: 700px;
         margin: 2rem auto;
         background-color: #fff;
         border-radius: 15px;
@@ -38,7 +38,7 @@
         padding: 0.75rem;
         border: 1px solid #ced4da;
         border-radius: 0.25rem;
-        box-sizing: border-box; /* Importante para que padding no afecte el width total */
+        box-sizing: border-box;
         font-size: 1rem;
         transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     }
@@ -81,7 +81,7 @@
         margin-top: 2rem;
         padding-top: 1rem;
         border-top: 1px solid #eee;
-        text-align: right; /* Alinea botones a la derecha */
+        text-align: right;
     }
 
     .form-acciones .btn {
@@ -115,12 +115,11 @@
         transform: translateY(-1px);
     }
 
-    /* Estilos para TomSelect (asegúrate que `tom-select.bootstrap5.min.css` se cargue si usas Bootstrap) */
-    /* Si no usas Bootstrap, el CSS por defecto de TomSelect necesitará ajustes o usa el tom-select.css normal */
+    /* Estilos para TomSelect*/
     .ts-wrapper .ts-control {
-        border-radius: 0.25rem !important; /* Ajusta si es necesario */
+        border-radius: 0.25rem !important;
         border-color: #ced4da !important;
-        padding: 0.6rem 0.75rem !important; /* Ajusta padding para consistencia */
+        padding: 0.6rem 0.75rem !important;
     }
     .ts-wrapper.focus .ts-control {
         border-color: #DEA54B !important;

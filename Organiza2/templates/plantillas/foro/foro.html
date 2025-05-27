@@ -1,5 +1,5 @@
 {% extends 'plantillas/base.html' %}
-{% load static %} {# Asegúrate que static está cargado si usas CSS de perfil o algo así #}
+{% load static %}
 
 {% block contenido %}
 <header>
@@ -46,7 +46,10 @@
                     {% endif %}
                     <div class="tarea-acciones-foro">
                         <a href="{% url 'detalle_tarea' tarea.pk %}">Ver Detalles</a>
-                        {# Aquí podrías añadir un botón para "Copiar Tarea" en el futuro si quisieras #}
+                        <form action="{% url 'copiar_tarea' tarea.pk %}" method="post" style="display: inline; margin-left: 10px;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-copiar-tarea">Copiar a mi perfil</button>
+                        </form>                    
                     </div>
                 </div>
             {% endfor %}

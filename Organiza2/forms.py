@@ -3,28 +3,33 @@ from .models import Tarea, Etiqueta
 from django.utils import timezone
 from django.forms import ModelChoiceField, ValidationError
 
-# --- CreatableModelChoiceField (sin cambios) ---
 class CreatableModelChoiceField(ModelChoiceField):
     def clean(self, value):
+        # Si el valor está vacío (None, '', etc.), retorna None.
         if value in self.empty_values:
             return None
         try:
+            # Intenta obtener el objeto del queryset usando el valor como clave primaria (o el campo especificado).
             obj = self.queryset.get(**{self.to_field_name or 'pk': value})
             return obj
         except (ValueError, TypeError, self.queryset.model.DoesNotExist):
+            # Si no se puede encontrar el objeto (o el valor es inválido), verifica si el valor es un string.
             if isinstance(value, str):
-                normalized_value = value.strip()
+                normalized_value = value.strip()  # Elimina espacios al inicio y final.
                 if not normalized_value:
-                    return None
+                    return None  # Si después de limpiar está vacío, retorna None.
                 try:
+                    # Intenta obtener o crear un objeto con el nombre normalizado.
                     obj, created = self.queryset.get_or_create(
                         nombre=normalized_value,
                         defaults={'nombre': normalized_value}
                     )
                     return obj
                 except Exception as e:
+                    # Si falla la creación, lanza un error de validación con un mensaje personalizado.
                     raise ValidationError(f"No se pudo crear o encontrar la etiqueta: '{value}'. Verifique que el nombre sea único.")
             else:
+                # Si el valor no es string y no se encontró, lanza un error de validación estándar.
                 raise ValidationError(self.error_messages['invalid_choice'], code='invalid_choice')
 
 class TareaForm(forms.ModelForm):
@@ -45,9 +50,8 @@ class TareaForm(forms.ModelForm):
             'titulo',
             'descripcion',
             'fecha_vencimiento',
-            'estado',           # Mantenemos estado
+            'estado',
             'visibilidad',
-            # 'completada',     # Eliminamos este campo del formulario
             'etiqueta',
             'prioridad',
         ]
@@ -65,13 +69,12 @@ class TareaForm(forms.ModelForm):
                 'class': 'form-control',
                 'type': 'datetime-local'
             }),
-            'estado': forms.Select(attrs={  # El widget se mantiene, pero ajustaremos choices
+            'estado': forms.Select(attrs={
                 'class': 'form-select'
             }),
             'visibilidad': forms.Select(attrs={
                 'class': 'form-select'
             }),
-            # El widget para 'completada' se elimina ya que el campo no está
             'prioridad': forms.Select(attrs={
                 'class': 'form-select'
             }),
@@ -89,21 +92,11 @@ class TareaForm(forms.ModelForm):
         user = kwargs.pop('user', None)
         super(TareaForm, self).__init__(*args, **kwargs)
         
-        # Ajustar las opciones para el campo 'estado'
-        # Excluimos la opción 'completada' del formulario
         estado_choices = [choice for choice in Tarea.ESTADO_CHOICES if choice[0] != 'completada']
         self.fields['estado'].choices = estado_choices
         
-        # Si la tarea ya existe y está completada, mantenemos el estado 'completada'
-        # pero el select no lo mostrará como opción editable si no está entre las choices.
-        # Esto es más para la edición, para creación no importa.
         if self.instance and self.instance.pk and self.instance.estado == 'completada':
-             # Si quieres que aparezca "Completada" si YA está completada (solo visual, no seleccionable)
-             # podrías añadirlo dinámicamente, o simplemente dejar que el modelo maneje esto.
-             # Por ahora, si está completada, el select mostrará el primer estado disponible o vacío.
-             # Lo ideal es que si está completada, no se edite el estado desde aquí directamente.
-             # La lógica de completar se hará con el tick.
-             pass # Dejamos que el valor inicial se establezca, pero 'completada' no será una opción nueva a elegir
+            pass #'completada' no será una opción nueva a elegir
 
         self.fields['prioridad'].choices = [(i, str(i)) for i in range(1, 6)]
         

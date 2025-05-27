@@ -1,5 +1,3 @@
-/* Estilos generales para la página de login */
-
 body {
     background-color: #F2CD5D;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -47,7 +45,7 @@ body {
 .formulario_inicio_sesion button[type="submit"] {
     width: 100%;
     padding: 0.7rem;
-    background-color: #DEA54B; /* Amarillo oscuro */
+    background-color: #DEA54B;
     border: 1px solid white;
     color: #fff;
     border-radius: 6px;
