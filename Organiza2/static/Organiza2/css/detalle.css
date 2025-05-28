@@ -151,3 +151,59 @@
 .volver-link .btn-secundario:hover {
     background-color: #5a6268;
 }
+@media (max-width: 768px) {
+    .main_home,
+    .main_perfil,
+    .main_foro,
+    .main_formulario_tarea,
+    .main_detalle_tarea,
+    .main_listado_simple_tareas,
+    .container_login,
+    .container_register {
+        padding: 1.5rem 1rem;
+        margin: 1rem auto;
+        width: 95%;
+        border-radius: 10px;
+    }
+
+    .main_home > section > h1,
+    .main_perfil > h1,
+    .main_foro > h1,
+    .container-formulario-tarea h1,
+    .detalle-header h1,
+    .container-listado-simple h1,
+    .formulario_inicio_sesion h1,
+    .formulario_registro h1 {
+        font-size: 1.7em;
+        margin-bottom: 15px;
+    }
+
+    .container_login, .container_register {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .main_home,
+    .main_perfil,
+    .main_foro,
+    .main_formulario_tarea,
+    .main_detalle_tarea,
+    .main_listado_simple_tareas,
+    .container_login,
+    .container_register {
+        padding: 1rem 0.8rem;
+        border-radius: 5px;
+    }
+
+    .main_home > section > h1,
+    .main_perfil > h1,
+    .main_foro > h1,
+    .container-formulario-tarea h1,
+    .detalle-header h1,
+    .container-listado-simple h1,
+    .formulario_inicio_sesion h1,
+    .formulario_registro h1 {
+        font-size: 1.5em;
+    }
+}

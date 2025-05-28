@@ -1,127 +1,221 @@
-    .main_formulario_tarea {
-        padding: 2rem;
-        max-width: 700px;
-        margin: 2rem auto;
-        background-color: #fff;
-        border-radius: 15px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        width: 90%;
+.main_formulario_tarea {
+    padding: 2rem;
+    max-width: 700px;
+    margin: 2rem auto;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 90%;
+}
+
+.container-formulario-tarea h1 {
+    text-align: center;
+    color: #DEA54B;
+    margin-bottom: 25px;
+}
+
+.formulario-tarea-estilizado .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.formulario-tarea-estilizado label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #495057;
+}
+
+.required-asterisk {
+    color: red;
+    margin-left: 2px;
+}
+
+.formulario-tarea-estilizado input[type="text"],
+.formulario-tarea-estilizado input[type="datetime-local"],
+.formulario-tarea-estilizado textarea,
+.formulario-tarea-estilizado select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+    font-size: 1rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.formulario-tarea-estilizado input[type="checkbox"] {
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
+.formulario-tarea-estilizado input:focus,
+.formulario-tarea-estilizado textarea:focus,
+.formulario-tarea-estilizado select:focus {
+    border-color: #DEA54B;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(222, 165, 75, 0.25);
+}
+
+.form-text.text-muted {
+    font-size: 0.875em;
+    color: #6c757d;
+    margin-top: 0.25rem;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 0.875em;
+    margin-top: 0.25rem;
+}
+
+.alert.alert-danger { /* Para form.non_field_errors */
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid #f5c6cb;
+    border-radius: 0.25rem;
+}
+
+.form-acciones {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+    text-align: right;
+}
+
+.form-acciones .btn {
+    padding: 0.6rem 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-left: 0.5rem;
+    border: none;
+}
+
+.btn-primario {
+    background-color: #DEA54B;
+    color: white;
+    border: 1px solid #DEA54B;
+}
+.btn-primario:hover {
+    background-color: #c48a3a;
+    transform: translateY(-1px);
+}
+
+.btn-secundario {
+    background-color: #6c757d;
+    color: white;
+    border: 1px solid #6c757d;
+}
+.btn-secundario:hover {
+    background-color: #5a6268;
+    transform: translateY(-1px);
+}
+
+/* Estilos para TomSelect*/
+.ts-wrapper .ts-control {
+    border-radius: 0.25rem !important;
+    border-color: #ced4da !important;
+    padding: 0.6rem 0.75rem !important;
+}
+.ts-wrapper.focus .ts-control {
+    border-color: #DEA54B !important;
+    box-shadow: 0 0 0 0.2rem rgba(222, 165, 75, 0.25) !important;
+}
+@media (max-width: 768px) {
+    .main_home,
+    .main_perfil,
+    .main_foro,
+    .main_formulario_tarea,
+    .main_detalle_tarea,
+    .main_listado_simple_tareas,
+    .container_login,
+    .container_register {
+        padding: 1.5rem 1rem;
+        margin: 1rem auto;
+        width: 95%;
+        border-radius: 10px;
     }
 
-    .container-formulario-tarea h1 {
-        text-align: center;
-        color: #DEA54B;
-        margin-bottom: 25px;
+    .main_home > section > h1,
+    .main_perfil > h1,
+    .main_foro > h1,
+    .container-formulario-tarea h1,
+    .detalle-header h1,
+    .container-listado-simple h1,
+    .formulario_inicio_sesion h1,
+    .formulario_registro h1 {
+        font-size: 1.7em;
+        margin-bottom: 15px;
     }
 
+    .container_login, .container_register {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .main_home,
+    .main_perfil,
+    .main_foro,
+    .main_formulario_tarea,
+    .main_detalle_tarea,
+    .main_listado_simple_tareas,
+    .container_login,
+    .container_register {
+        padding: 1rem 0.8rem;
+        border-radius: 5px;
+    }
+
+    .main_home > section > h1,
+    .main_perfil > h1,
+    .main_foro > h1,
+    .container-formulario-tarea h1,
+    .detalle-header h1,
+    .container-listado-simple h1,
+    .formulario_inicio_sesion h1,
+    .formulario_registro h1 {
+        font-size: 1.5em;
+    }
+}
+@media (max-width: 768px) {
     .formulario-tarea-estilizado .form-group {
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
     }
 
     .formulario-tarea-estilizado label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 0.5rem;
-        color: #495057;
-    }
-    
-    .required-asterisk {
-        color: red;
-        margin-left: 2px;
+        font-size: 0.9rem;
     }
 
     .formulario-tarea-estilizado input[type="text"],
     .formulario-tarea-estilizado input[type="datetime-local"],
     .formulario-tarea-estilizado textarea,
-    .formulario-tarea-estilizado select {
-        width: 100%;
-        padding: 0.75rem;
-        border: 1px solid #ced4da;
-        border-radius: 0.25rem;
-        box-sizing: border-box;
-        font-size: 1rem;
-        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    }
-    
-    .formulario-tarea-estilizado input[type="checkbox"] {
-        margin-right: 0.5rem;
-        vertical-align: middle;
+    .formulario-tarea-estilizado select,
+    .ts-wrapper .ts-control { /* TomSelect */
+        font-size: 0.9rem;
+        padding: 0.65rem 0.5rem;
     }
 
-    .formulario-tarea-estilizado input:focus,
-    .formulario-tarea-estilizado textarea:focus,
-    .formulario-tarea-estilizado select:focus {
-        border-color: #DEA54B;
-        outline: 0;
-        box-shadow: 0 0 0 0.2rem rgba(222, 165, 75, 0.25);
-    }
-
-    .form-text.text-muted {
-        font-size: 0.875em;
-        color: #6c757d;
-        margin-top: 0.25rem;
-    }
-
-    .error-message {
-        color: #dc3545;
-        font-size: 0.875em;
-        margin-top: 0.25rem;
-    }
-    
-    .alert.alert-danger { /* Para form.non_field_errors */
-        background-color: #f8d7da;
-        color: #721c24;
-        padding: 0.75rem 1.25rem;
-        margin-bottom: 1rem;
-        border: 1px solid #f5c6cb;
-        border-radius: 0.25rem;
+    .ts-wrapper .ts-control { /* Ajuste específico para TomSelect */
+        min-height: calc(1.5em + 1.3rem + 2px);
     }
 
     .form-acciones {
-        margin-top: 2rem;
-        padding-top: 1rem;
-        border-top: 1px solid #eee;
-        text-align: right;
+        text-align: center;
+        margin-top: 1.5rem;
+        padding-top: 0.8rem;
     }
-
     .form-acciones .btn {
-        padding: 0.6rem 1.2rem;
-        font-weight: 600;
-        text-decoration: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-        margin-left: 0.5rem;
-        border: none;
+        width: 100%;
+        margin-left: 0;
+        margin-bottom: 0.75rem;
+        padding: 0.7rem 1rem;
+        font-size: 0.95rem;
     }
-
-    .btn-primario {
-        background-color: #DEA54B;
-        color: white;
-        border: 1px solid #DEA54B;
+    .form-acciones .btn:last-child {
+        margin-bottom: 0;
     }
-    .btn-primario:hover {
-        background-color: #c48a3a;
-        transform: translateY(-1px);
-    }
-
-    .btn-secundario {
-        background-color: #6c757d;
-        color: white;
-        border: 1px solid #6c757d;
-    }
-    .btn-secundario:hover {
-        background-color: #5a6268;
-        transform: translateY(-1px);
-    }
-
-    /* Estilos para TomSelect*/
-    .ts-wrapper .ts-control {
-        border-radius: 0.25rem !important;
-        border-color: #ced4da !important;
-        padding: 0.6rem 0.75rem !important;
-    }
-    .ts-wrapper.focus .ts-control {
-        border-color: #DEA54B !important;
-        box-shadow: 0 0 0 0.2rem rgba(222, 165, 75, 0.25) !important;
-    }
+}

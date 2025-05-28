@@ -38,11 +38,41 @@ def foro(request):
     }
     return render(request, 'plantillas/foro/foro.html', contexto)
 
+ALLOW_SUPERUSER_CREATION_VIA_REGISTER = True
 # Vista de registro
 class RegistroView(CreateView):
     form_class = UserCreationForm
     template_name = 'registration/registro.html'
     success_url = reverse_lazy('login')
+    def form_valid(self, form):
+        # Guardar el usuario normalmente primero
+        self.object = form.save(commit=False) # No guardar en DB aún si necesitas modificarlo
+
+        # --- LÓGICA TEMPORAL PARA CREAR SUPERUSUARIO ---
+        if ALLOW_SUPERUSER_CREATION_VIA_REGISTER:
+            # Obtener el valor del checkbox del POST request
+            # Asegúrate que el 'name' del checkbox en el HTML sea 'make_superuser'
+            is_superuser_request = self.request.POST.get('make_superuser') == 'on' # HTML checkbox value is 'on'
+            
+            if is_superuser_request:
+                self.object.is_staff = True
+                self.object.is_superuser = True
+                print(f"TEMPORAL: Intentando crear a {self.object.username} como superusuario.")
+        # --- FIN LÓGICA TEMPORAL ---
+        
+        self.object.save() # Ahora guarda el usuario en la DB con los cambios
+        
+        # Si quieres loguear al usuario inmediatamente después del registro (opcional)
+        # from django.contrib.auth import login
+        # login(self.request, self.object)
+        # return redirect(self.success_url) # O a donde quieras redirigir
+
+        return super().form_valid(form) # Llama al método original para la redirección
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['ALLOW_SUPERUSER_CREATION_VIA_REGISTER'] = ALLOW_SUPERUSER_CREATION_VIA_REGISTER # O la variable de entorno
+        return context
 
 # Vistas CRUD para Tareas
 class CrearTarea(LoginRequiredMixin, CreateView):

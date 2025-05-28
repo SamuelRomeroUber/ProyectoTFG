@@ -119,3 +119,98 @@ body {
 .footer_register a:hover {
     text-decoration: underline;
 }
+@media (max-width: 768px) {
+    .main_home,
+    .main_perfil,
+    .main_foro,
+    .main_formulario_tarea,
+    .main_detalle_tarea,
+    .main_listado_simple_tareas,
+    .container_login,
+    .container_register {
+        padding: 1.5rem 1rem;
+        margin: 1rem auto;
+        width: 95%;
+        border-radius: 10px;
+    }
+
+    .main_home > section > h1,
+    .main_perfil > h1,
+    .main_foro > h1,
+    .container-formulario-tarea h1,
+    .detalle-header h1,
+    .container-listado-simple h1,
+    .formulario_inicio_sesion h1,
+    .formulario_registro h1 {
+        font-size: 1.7em;
+        margin-bottom: 15px;
+    }
+
+    .container_login, .container_register {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .main_home,
+    .main_perfil,
+    .main_foro,
+    .main_formulario_tarea,
+    .main_detalle_tarea,
+    .main_listado_simple_tareas,
+    .container_login,
+    .container_register {
+        padding: 1rem 0.8rem;
+        border-radius: 5px;
+    }
+
+    .main_home > section > h1,
+    .main_perfil > h1,
+    .main_foro > h1,
+    .container-formulario-tarea h1,
+    .detalle-header h1,
+    .container-listado-simple h1,
+    .formulario_inicio_sesion h1,
+    .formulario_registro h1 {
+        font-size: 1.5em;
+    }
+}
+@media (max-width: 768px) {
+    .main_register {
+        padding: 1rem;
+    }
+
+    .formulario_registro h1 {
+        margin-bottom: 1rem;
+    }
+
+    .formulario_registro label {
+        font-size: 0.9rem;
+        margin-bottom: 0.2rem;
+        margin-top: 0.8rem;
+    }
+
+    .formulario_registro input[type="text"],
+    .formulario_registro input[type="password"],
+    .formulario_registro input[type="email"] {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.7rem 0.6rem;
+        font-size: 0.95rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .formulario_registro button[type="submit"] {
+        padding: 0.7rem;
+        font-size: 1rem;
+    }
+
+    .errores_registro {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .footer_register {
+        margin: 1.5rem 0 0.8rem 0;
+    }
+}
