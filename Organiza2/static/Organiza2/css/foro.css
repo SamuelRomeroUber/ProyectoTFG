@@ -385,3 +385,45 @@
         font-size: 1.5em;
     }
 }
+
+.tarea-acciones-foro .btn-ver-detalles {
+    display: inline-block;
+    padding: 8px 18px;
+    background-color: #DEA54B;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #DEA54B;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.07);
+}
+
+.tarea-acciones-foro .btn-ver-detalles:hover {
+    background-color: #c48a3a;
+    border-color: #c48a3a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+}
+.tarea-acciones-foro .btn-copiar-tarea {
+    display: inline-block;
+    padding: 8px 18px;
+    background-color: #fff;
+    color: #DEA54B;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9em;
+    border: 1px solid #DEA54B;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.07);
+}
+
+.tarea-acciones-foro .btn-copiar-tarea:hover {
+    background-color: #f8f8f8;
+    border-color: #c48a3a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+}
