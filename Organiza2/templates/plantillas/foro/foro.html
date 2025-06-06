@@ -38,7 +38,7 @@
                         <strong>Prioridad:</strong> {{ tarea.prioridad }} |
                         <strong>Vencimiento:</strong> {{ tarea.fecha_vencimiento|date:"d/m/Y H:i"|default:"Sin fecha" }}
                         {% if tarea.etiqueta %}
-                            | <strong>Etiqueta:</strong> {{ tarea.etiqueta.nombre }}
+                            <strong>Etiqueta:</strong> {{ tarea.etiqueta.nombre }}
                         {% endif %}
                     </p>
                     {% if tarea.descripcion %}

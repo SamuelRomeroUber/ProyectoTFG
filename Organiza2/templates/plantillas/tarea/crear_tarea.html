@@ -36,10 +36,8 @@
             
             <div class="form-acciones">
                 <button type="submit" class="btn btn-primario">
-                    {# El texto del botón se ajusta automáticamente #}
                     {% if form.instance.pk %}Guardar Cambios{% else %}Crear Tarea{% endif %}
                 </button>
-                {# El enlace de Cancelar para "crear" usualmente vuelve al perfil o al listado #}
                 <a href="{% url 'perfil_usuario' %}" class="btn btn-secundario">Cancelar</a>
             </div>
         </form>

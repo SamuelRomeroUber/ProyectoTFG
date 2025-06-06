@@ -1,16 +1,31 @@
 {% extends 'plantillas/base.html' %}
+{% load static %}
 
 {% block contenido %}
+<main class="main_formulario_tarea">
+    <div class="container-formulario-tarea">
+        <h1>Confirmar Borrado de Tarea</h1>
 
-<form action="" method="post">
+        <form method="post" class="formulario-tarea-estilizado">
+            {% csrf_token %}
 
-    {% csrf_token %}
+            <p style="text-align: center; font-size: 1.1em; margin-bottom: 1.5rem; color: #333;">
+                ¿Estás seguro de que quieres borrar la tarea: <strong>"{{ object.titulo }}"</strong>?
+            </p>
+            <p style="text-align: center; color: #dc3545; font-weight: bold; margin-bottom: 2rem;">
+                Esta acción no se puede deshacer.
+            </p>
 
-    {{form.as_p}}
-    <p>¿Estas seguro que quieres borrar la tarea: {{object.titulo}} ?</p>
-
-    <input type="submit" value="borrar"/>
-
-</form>
+            <div class="form-acciones" style="text-align: center;">
+                <button type="submit" class="btn btn-borrar" style="margin-right: 10px;">
+                    Sí, borrar definitivamente
+                </button>
+                <a href="{% url 'detalle_tarea' object.pk %}" class="btn btn-secundario">
+                    Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+</main>
 
 {% endblock %}

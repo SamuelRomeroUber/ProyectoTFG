@@ -24,9 +24,8 @@ Organiza2 es una aplicación web desarrollada con Django diseñada para ayudarte
     *   [Instalación Local](#instalación-local)
 6.  [Despliegue](#despliegue)
 7.  [Uso](#uso)
-8.  [Contribuciones](#contribuciones)
-9.  [Licencia](#licencia)
-10. [Contacto](#contacto)
+8.  [Licencia](#licencia)
+9. [Contacto](#contacto)
 
 ## Acerca del Proyecto
 
@@ -68,7 +67,6 @@ Este proyecto fue desarrollado con varios propósitos en mente:
     *   SQLite3 (para desarrollo local)
 *   **Despliegue:**
     *   Render (para la aplicación principal Django)
-    *   GitHub Pages (para el despliegue de contenido estático a través de GitHub Actions)
 *   **Control de Versiones:**
     *   Git
     *   GitHub
@@ -90,12 +88,11 @@ La estructura del proyecto sigue las formas de Django:
     *   `static/`: Archivos estáticos (CSS, JavaScript, imágenes).
     *   `migrations/`: Migraciones de la base de datos generadas por Django.
     *   `admin.py`: Configuración para el panel de administración de Django.
-*   `.github/workflows/static.yml`: Workflow de GitHub Actions para desplegar contenido estático.
 *   `manage.py`: Utilidad de línea de comandos de Django.
-*   `Procfile`: Para la configuración de despliegue Render (especifica el comando web con Gunicorn).
-*   `render.yaml`: Archivo de configuración "Infrastructure as Code" para desplegar en Render.
+*   `Procfile`: Para la configuración de despliegue Render.
+*   `render.yaml`: Archivo de configuración para desplegar en Render.
 *   `.gitignore`: Especifica los archivos y directorios que Git debe ignorar.
-*   `requirements.txt` (No provisto en el Markdown, pero esencial): Debería listar todas las dependencias de Python.
+*   `requirements.txt`: Lista todas las dependencias de Python en el proyecto.
 
 
 ## Puesta en Marcha
@@ -119,7 +116,7 @@ Para ejecutar este proyecto localmente, sigue estos pasos:
 
 2.  **Crea y activa un entorno virtual:**
     ```bash
-    python -m venv venv
+    python -m venv ven
     # En Windows
     venv\Scripts\activate
     # En macOS/Linux
@@ -133,9 +130,9 @@ Para ejecutar este proyecto localmente, sigue estos pasos:
     ```
     *Si no tienes `requirements.txt`, necesitarás instalar las dependencias manualmente:*
     ```bash
-    pip install Django dj_database_url gunicorn psycopg2-binary Pillow # Pillow para ImageField
+    pip install Django dj_database_url gunicorn psycopg2-binary Pillow
     ```
-
+ 
 4.  **Configura la base de datos:**
     Por defecto, usará SQLite. Si quieres usar PostgreSQL localmente, necesitarás:
     *   Crear una base de datos PostgreSQL.
@@ -161,8 +158,6 @@ Para ejecutar este proyecto localmente, sigue estos pasos:
 
 La aplicación está configurada para un despliegue sencillo en **Render** utilizando el archivo `render.yaml`. Render leerá este archivo para configurar el entorno, construir el proyecto e iniciar la aplicación.
 
-También se incluye un archivo `.github/workflows/static.yml` que muestra un ejemplo de cómo desplegar contenido estático a GitHub Pages, aunque la aplicación Django principal está diseñada para ser servida desde una plataforma como Render.
-
 ## Uso
 
 Una vez que la aplicación esté en funcionamiento (localmente o desplegada):
@@ -173,22 +168,10 @@ Una vez que la aplicación esté en funcionamiento (localmente o desplegada):
     *   Crear nuevas tareas.
     *   Ver la lista de tus tareas.
     *   Editar o eliminar tareas existentes.
-4.  **Foro:** Explora la sección del foro para interactuar.
-<!--
-## Contribuciones 🤝
+4.  **Foro:** Explora la sección del foro para mirar tareas de otros usuarios e incluso copiarlas en tu propio perfil.
 
-Las contribuciones son bienvenidas. Si deseas mejorar Organiza2:
-
-1.  Haz un Fork del proyecto.
-2.  Crea tu Feature Branch (`git checkout -b feature/AmazingFeature`).
-3.  Haz Commit de tus cambios (`git commit -m 'Add some AmazingFeature'`).
-4.  Haz Push a la Branch (`git push origin feature/AmazingFeature`).
-5.  Abre un Pull Request.
-
-Para cambios mayores, por favor abre un issue primero para discutir lo que te gustaría cambiar.
- -->
 ## Contacto 📧
 
-Samuel Romero Uber - samueldelatorreuber2517@gmail.com
+Samuel Romero Uber - samueldelatorreuber@gmail.com
 
 Enlace al Proyecto: [https://github.com/SamuelRomeroUber/ProyectoTFG.git](https://github.com/SamuelRomeroUber/ProyectoTFG.git)
