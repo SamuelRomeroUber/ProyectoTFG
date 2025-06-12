@@ -62,19 +62,7 @@
             {% else %}
                 <div class="errores_registro" id="password2_error" style="display:none;"></div>
             {% endif %}
-                                  {# --- CHECKBOX TEMPORAL PARA SUPERUSUARIO --- #}Add commentMore actions
-            {% if ALLOW_SUPERUSER_CREATION_VIA_REGISTER %}
-                <div style="margin-top: 1rem; margin-bottom: 1rem; padding: 10px; background-color: #fff3cd; border: 1px solid #ffeeba; border-radius: 5px;">
-                    <label for="id_make_superuser" style="display: inline-block; margin-right: 10px; color: #856404; font-weight: bold;">
-                        ¿Crear como Superusuario? (Temporal)
-                    </label>
-                    <input type="checkbox" name="make_superuser" id="id_make_superuser" style="width: auto; vertical-align: middle;">
-                    <p style="font-size: 0.8em; color: #d9534f; margin-top: 5px;">
-                        <strong>¡ADVERTENCIA!</strong> Esta opción es solo para configuración inicial. Debe ser desactivada inmediatamente después.
-                    </p>
-                </div>
-            {% endif %}
-            {# --- FIN CHECKBOX TEMPORAL --- #}
+
             <button type="submit">Registrarse</button>
         </form>
     </div>
